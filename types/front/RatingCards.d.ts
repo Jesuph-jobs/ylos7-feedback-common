@@ -6,5 +6,6 @@ declare interface CardI {
 
 declare interface RatingCardI extends CardI {
 	rating: number;
+	participantId: string;
 	setRating: (rating: number) => void;
 }

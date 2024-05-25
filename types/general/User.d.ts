@@ -15,6 +15,7 @@ declare interface UserDocumentI<T extends Omit<ValidationI, 'updatedAt'> = Omit<
 	apps: UserAppsI;
 }
 declare interface NecessaryUserI {
+	id: string;
 	fullName: string;
 	firstName: string;
 	lastName: string;

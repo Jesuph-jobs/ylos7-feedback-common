@@ -217,6 +217,7 @@ export const NecessaryUserSchema = (
 	z
 		.object<MyZodType<NecessaryUserI>>(
 			{
+				id: mongoIDSchema(),
 				firstName: nameSchema(firstName),
 				lastName: nameSchema(lastName),
 				fullName: nameSchema(fullName),
