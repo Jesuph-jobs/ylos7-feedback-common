@@ -11,14 +11,7 @@ declare interface RatingParamsI {
 	importance: number;
 	frequency: number;
 }
-declare interface FormPayload {
-	setForm: {
-		rater: NecessaryUserI;
-		participants: NecessaryUserI[];
-	};
-	setQuality: number;
-	setImportance: number;
-	setFrequency: number;
-	goNext: null;
-	goPrev: null;
+declare interface FormSessionDataI {
+	rater: NecessaryUserI;
+	participants: NecessaryUserI[];
 }
