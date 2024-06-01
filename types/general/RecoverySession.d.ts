@@ -13,5 +13,5 @@ declare interface ResetPasswordI {
 }
 declare interface RecoverySessionResponseI {
 	sessionId: string;
-	user: NecessaryUserI;
+	user: StudentI;
 }

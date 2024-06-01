@@ -1,11 +1,22 @@
-declare interface ModalI<BodyTypeT extends string = 'DEFAULT', ExtraObjectT extends object | null = null> {
-	title?: string;
-	bodyType: BodyTypeT;
+// declare interface ModalI<BodyTypeT extends string = 'DEFAULT', ExtraObjectT extends object | null = null> {
+// 	title?: string;
+// 	bodyType: BodyTypeT;
+// 	size?: string;
+// 	shake?: boolean;
+// 	extraObject: ExtraObjectT;
+// }
+// declare interface OpenableModalI<BodyTypeT extends string = 'DEFAULT', ExtraObjectT extends object | null = null>
+// 	extends ModalI<BodyTypeT, ExtraObjectT> {
+// 	isOpen: boolean;
+// }
+
+declare interface ModalI<T = object> {
+	title: string;
+	bodyType: string;
 	size?: string;
-	shake?: boolean;
-	extraObject: ExtraObjectT;
+	extraObject?: NonNullable<T>;
 }
-declare interface OpenableModalI<BodyTypeT extends string = 'DEFAULT', ExtraObjectT extends object | null = null>
-	extends ModalI<BodyTypeT, ExtraObjectT> {
+declare interface OpenableModalI<T = object> extends ModalI<T> {
 	isOpen: boolean;
+	extraObject: NonNullable<T>;
 }

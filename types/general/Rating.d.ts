@@ -1,7 +1,7 @@
-declare interface ParticipantRatingI<T extends NecessaryUserI | string = NecessaryUserI> extends RatingParamsI {
+declare interface ParticipantRatingI<T extends StudentI | string = StudentI> extends RatingParamsI {
 	participant: T;
 }
-declare interface RatingsSubmissionI<T extends NecessaryUserI | string = NecessaryUserI> {
+declare interface RatingsSubmissionI<T extends StudentI | string = StudentI> {
 	rater: T | null;
 	participants: ParticipantRatingI<T>[];
 	timeTaken: number;
@@ -12,6 +12,6 @@ declare interface RatingParamsI {
 	frequency: number;
 }
 declare interface FormSessionDataI {
-	rater: NecessaryUserI;
-	participants: NecessaryUserI[];
+	rater: StudentI;
+	participants: StudentI[];
 }

@@ -211,11 +211,11 @@ export const NecessaryUserSchema = (
 		lastName,
 		phone,
 		profilePicture,
-	}: Partial<Record<keyof NecessaryUserI, ErrorsSchemaMsgI>> = {},
+	}: Partial<Record<keyof StudentI, ErrorsSchemaMsgI>> = {},
 	NecessaryUserMsg: ErrorsSchemaMsgI = {}
 ) =>
 	z
-		.object<MyZodType<NecessaryUserI>>(
+		.object<MyZodType<StudentI>>(
 			{
 				id: mongoIDSchema(),
 				firstName: nameSchema(firstName),
