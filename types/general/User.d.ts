@@ -1,8 +1,8 @@
 declare interface UserI<UserID = string, TimeT extends string | Date = string>
 	extends Omit<UserRegistrationI, 'password' | 'confirmPassword'>,
-		TimeStampI<TimeT> {
+		TimeStampI<TimeT>,
+		DataTablesI {
 	id: UserID;
-	// validated: ValidatedElementsI;
 }
 
 declare interface UserAppsI {
