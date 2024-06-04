@@ -1,16 +1,13 @@
 import { MyZodType, z } from '../defaultZod';
-import { emailSchema, mongoIDSchema, passwordSchema, usernameSchema, uuidSchema } from '../elements';
+import { emailSchema, mongoIDSchema, otpSchema, passwordSchema } from '../elements';
 
 import { NecessaryUserSchema } from './user';
 
-export const RecoverySessionSchema = ({
-	email,
-	username,
-}: Partial<Record<keyof RecoverySessionI | 'email', ErrorsSchemaMsgI>> = {}) =>
+export const OTPSessionSchema = ({ email }: Partial<Record<keyof OTPSessionI, ErrorsSchemaMsgI>> = {}) =>
 	z
-		.object<MyZodType<RecoverySessionI>>(
+		.object<MyZodType<OTPSessionI>>(
 			{
-				username: z.union([usernameSchema(username), emailSchema(email)]),
+				email: emailSchema(email),
 			},
 			{
 				description: 'A Recovery Session Schema',
@@ -20,10 +17,14 @@ export const RecoverySessionSchema = ({
 		)
 		.openapi('Recovery_Session', { description: 'A Recovery Session Schema' });
 
-export const RecoverySessionSendSchema = () =>
+export const OTPSessionSendSchema = () =>
 	z
-		.object<MyZodType<RecoverySessionSendI>>(
+		.object<MyZodType<OTPSessionSendI>>(
 			{
+				otpCode: otpSchema({
+					description: 'The OTP code',
+					required: 'The OTP code is required',
+				}),
 				sessionId: mongoIDSchema({
 					description: 'The session id',
 					required: 'The session id is required',
@@ -40,7 +41,7 @@ export const RecoverySessionSendSchema = () =>
 export const ResetPasswordSchema = ({
 	confirmPassword,
 	password,
-	secretKey,
+	otpCode,
 	sessionId,
 }: Partial<Record<keyof ResetPasswordI, ErrorsSchemaMsgI>> = {}) => {
 	return z
@@ -60,10 +61,10 @@ export const ResetPasswordSchema = ({
 				required: 'The confirm password is required',
 				...(confirmPassword || null),
 			}),
-			secretKey: uuidSchema({
-				description: 'The secret key',
-				required: 'The secret key is required',
-				...(secretKey || null),
+			otpCode: otpSchema({
+				description: 'The OTP code',
+				required: 'The OTP code is required',
+				...(otpCode || null),
 			}),
 		})
 		.openapi('Reset_Password', { description: 'A Reset Password request Schema' })
@@ -77,10 +78,10 @@ export const ResetPasswordSchema = ({
 			}
 		});
 };
-// RecoverySessionResponseI
-export const RecoverySessionResponseSchema = () =>
+// OTPSessionResponseI
+export const OTPSessionResponseSchema = () =>
 	z
-		.object<MyZodType<RecoverySessionResponseI>>(
+		.object<MyZodType<OTPSessionResponseI>>(
 			{
 				sessionId: mongoIDSchema({
 					description: 'The session id',

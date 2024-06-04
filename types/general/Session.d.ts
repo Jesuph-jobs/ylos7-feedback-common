@@ -1,8 +1,3 @@
-interface TimeStampI<T extends string | Date = string> {
-	createdAt: T;
-	updatedAt: T;
-}
-
 interface SessionI<SessionID = string, TimeT extends string | Date = string> extends TimeStampI<TimeT> {
 	id: SessionID;
 	name: string;

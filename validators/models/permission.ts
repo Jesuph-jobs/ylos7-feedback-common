@@ -1,0 +1,20 @@
+import { z } from '../defaultZod';
+type Permissions = Readonly<[PermissionsEnum, ...PermissionsEnum[]]>;
+
+const permissions: Record<PermissionsEnum, PermissionsEnum> = {
+	'admin:super': 'admin:super',
+	read: 'read',
+	write: 'write',
+};
+
+export const permissionSchema = (msg?: ErrorsSchemaMsgI) =>
+	z
+		.enum<PermissionsEnum, Permissions>(Object.keys(permissions) as unknown as Permissions, {
+			invalid_type_error: msg?.invalid || 'Invalid permission',
+			required_error: msg?.required || 'Permission is required',
+			description: msg?.description || 'The permission',
+		})
+		.openapi('Permission', {
+			description: msg?.description || 'The permission',
+			format: 'read | write | delete',
+		});

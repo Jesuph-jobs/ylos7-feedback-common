@@ -1,22 +1,26 @@
-declare interface UserI<UserID = string, TimeT extends string | Date = string>
+declare interface UserAfterRegistrationI {
+	permissions: PermissionsEnum[];
+}
+declare interface BasicUserI<TimeT extends string | Date = string>
 	extends Omit<UserRegistrationI, 'password' | 'confirmPassword'>,
-		TimeStampI<TimeT>,
-		DataTablesI {
+		TimeStampI<TimeT> {}
+declare interface UserI<UserID = string, TimeT extends string | Date = string>
+	extends BasicUserI<TimeT>,
+		UserAfterRegistrationI {
 	id: UserID;
-}
-
-declare interface UserAppsI {
-	google: {
-		id: string;
-	};
-}
-
-declare interface StudentI extends UserI {
 	profilePicture?: string;
 }
 
-declare interface AdminI extends UserI {
-	permissions: Record<PermissionsNames, boolean>;
+declare interface UserDocumentI extends Omit<UserRegistrationI, 'confirmPassword'>, UserAfterRegistrationI {
+	// profilePicture?: string;
+	enabled: boolean;
+	lastLogin?: Date;
+	validated: {
+		email: boolean;
+	};
 }
-
-type PermissionsNames = 'read' | 'write';
+declare interface NecessaryUserI {
+	firstName: string;
+	lastName: string;
+	email: string;
+}

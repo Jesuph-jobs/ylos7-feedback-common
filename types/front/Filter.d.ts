@@ -7,10 +7,10 @@ interface FilterDef<T> {
 	name: string;
 	enums: EnumValue<T[Keys<T>]>[];
 }
-declare type FiltersI<T extends DataTablesI> = {
+declare type FiltersI<T extends NonNullable<object>> = {
 	[key in Keys<T>]?: FilterDef<T>;
 };
-declare type SelectFilterI<T extends DataTablesI> = FiltersI<T> & {
+declare type SelectFilterI<T extends NonNullable<object>> = FiltersI<T> & {
 	selected: {
 		[key in Keys<T>]?: string[];
 	};
