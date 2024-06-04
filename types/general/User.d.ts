@@ -11,13 +11,14 @@ declare interface UserI<UserID = string, TimeT extends string | Date = string>
 	profilePicture?: string;
 }
 
-declare interface UserDocumentI extends Omit<UserRegistrationI, 'confirmPassword'>, UserAfterRegistrationI {
+declare interface UserDocumentI extends UserRegistrationI, UserAfterRegistrationI {
 	// profilePicture?: string;
+	password: string;
 	enabled: boolean;
 	lastLogin?: Date;
-	validated: {
+	/* validated: {
 		email: boolean;
-	};
+	}; */
 }
 declare interface NecessaryUserI {
 	firstName: string;

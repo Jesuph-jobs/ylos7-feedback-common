@@ -4,13 +4,12 @@ declare interface UserLogInI {
 	stay?: boolean;
 }
 interface UserAuthI {
-	user: UserI;
+	user: UserI<string, string | Date>;
 	new?: boolean;
 	token?: string;
 }
 
-declare interface UserRegistrationI extends Omit<UserLogInI, 'stay'> {
+declare interface UserRegistrationI extends Omit<UserLogInI, 'stay' | 'password'> {
 	firstName: string;
 	lastName: string;
-	confirmPassword: string;
 }

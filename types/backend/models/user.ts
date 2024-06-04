@@ -36,7 +36,7 @@ export interface UserHydratedDocument
 
 export interface UserStaticMethods {
 	// custom static methods here
-	createUser: (this: UserModel, user: UserRegistrationI) => Promise<UserHydratedDocument>;
+	createUser: (this: UserModel, basicUser: UserRegistrationI) => Promise<[UserHydratedDocument, string]>;
 	findByCredentials: (this: UserModel, email: string, password: string) => Promise<UserHydratedDocument>;
 	// registerGoogleUser: (this: UserModel, user: UserGoogleRegistrationI) => Promise<[UserHydratedDocument, boolean]>;
 	findByUsername: (this: UserModel, username: string) => Promise<UserHydratedDocument | null>;

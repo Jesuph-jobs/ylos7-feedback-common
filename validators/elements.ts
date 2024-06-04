@@ -81,15 +81,7 @@ export const nameSchema = (msg?: ErrorsSchemaMsgI, attr: string = 'Name') =>
 			example: attr,
 			format: 'name',
 		});
-// string date
-export const stringDateSchema = (msg?: ErrorsSchemaMsgI) =>
-	z
-		.string({
-			invalid_type_error: msg?.invalid || 'Not a string',
-			required_error: msg?.required || 'Date is required',
-			description: msg?.description || 'A date in string format',
-		})
-		.refine((val) => !isNaN(Date.parse(val)), msg?.invalid || 'Invalid date');
+
 // mongodb id
 export const mongoIDSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
@@ -197,3 +189,10 @@ export const dateSchema = (msg?: ErrorsSchemaMsgI) =>
 			description: msg?.description || 'A date',
 			format: 'date',
 		});
+
+export const stringDateSchema = (msg?: ErrorsSchemaMsgI) =>
+	z.union([z.date(), z.string().refine((val) => !isNaN(Date.parse(val)), msg?.invalid || 'Invalid date')], {
+		required_error: msg?.required || 'Date is required',
+		invalid_type_error: msg?.invalid || 'Invalid date',
+		description: msg?.description || 'A date',
+	}) as ZodType<Date> | ZodType<string>;

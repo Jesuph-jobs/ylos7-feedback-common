@@ -36,17 +36,13 @@ export const userLoginSchema = ({
 /* --------------------------------- User Register Schema --------------------------------- */
 export const userRegisterSchema = ({
 	email,
-	password,
 	firstName,
 	lastName,
-	confirmPassword: confirmPasswordMsg = { description: 'The password confirmation' },
 }: Partial<Record<keyof UserRegistrationI, ErrorsSchemaMsgI>> = {}) => {
 	const schema = z
 		.object<MyZodType<UserRegistrationI>>(
 			{
 				email: emailSchema(email),
-				password: passwordSchema(password),
-				confirmPassword: passwordSchema(password),
 				firstName: nameSchema(firstName, 'firstName'),
 				lastName: nameSchema(lastName, 'lastName'),
 			},
@@ -57,14 +53,7 @@ export const userRegisterSchema = ({
 			}
 		)
 		.openapi('User_Registration_Request', { description: 'User Registration Schema' });
-	schema.superRefine(({ confirmPassword, password }, ctx) => {
-		if (confirmPassword !== password) {
-			ctx.addIssue({
-				code: 'custom',
-				message: confirmPasswordMsg?.invalid || 'The passwords did not match',
-			});
-		}
-	});
+
 	return schema;
 };
 
@@ -93,9 +82,6 @@ export const UserDocumentSchema = (
 				lastName: nameSchema(lastName, 'Last name'),
 				enabled: booleanSchema(enabled),
 				lastLogin: dateSchema(lastLogin).optional(),
-				validated: z.object<MyZodType<{ email: boolean }>>({
-					email: booleanSchema(),
-				}),
 				permissions: arraySchema<PermissionsEnum>(permissionSchema(permissions)),
 			},
 			{
@@ -122,7 +108,7 @@ export const PublicUserSchema = (
 	PublicUserMsg: ErrorsSchemaMsgI = {}
 ) =>
 	z
-		.object<MyZodType<UserI>>(
+		.object<MyZodType<UserI<string, Date | string>>>(
 			{
 				email: emailSchema(email),
 				firstName: nameSchema(firstName),
@@ -188,3 +174,24 @@ export const NecessaryUserSchema = (
 			}
 		)
 		.openapi('Necessary_User', { description: 'Necessary User Schema' });
+
+export const BasicUserSchema = (
+	{ email, firstName, lastName, createdAt, updatedAt }: Partial<Record<keyof BasicUserI, ErrorsSchemaMsgI>> = {},
+	BasicUserMsg: ErrorsSchemaMsgI = {}
+) =>
+	z
+		.object<MyZodType<BasicUserI<Date | string>>>(
+			{
+				email: emailSchema(email),
+				firstName: nameSchema(firstName),
+				lastName: nameSchema(lastName),
+				createdAt: stringDateSchema(createdAt),
+				updatedAt: stringDateSchema(updatedAt),
+			},
+			{
+				description: BasicUserMsg.description || 'Basic User Schema',
+				invalid_type_error: BasicUserMsg.invalid || 'Invalid Basic User Schema',
+				required_error: BasicUserMsg.required || 'Basic User Schema is required',
+			}
+		)
+		.openapi('Basic_User', { description: 'Basic User Schema' });
