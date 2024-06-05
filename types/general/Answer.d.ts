@@ -1,8 +1,10 @@
-declare interface BasicAnswerI<ID = string> {
+declare interface AnswerInfoI<ID = string> {
 	questionId: ID;
-	studentId: ID;
 	participantId: ID;
-	answer: number;
+	rating: number;
+}
+declare interface BasicAnswerI<ID = string> extends AnswerInfoI<ID> {
+	raterId: ID;
 }
 declare interface AnswerI<ID = string> extends BasicAnswerI<ID> {
 	id: ID;

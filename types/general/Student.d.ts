@@ -1,9 +1,12 @@
-declare interface BasicStudentI {
+declare interface PublicStudentI {
+	id: string;
 	firstName: string;
 	lastName: string;
+	profilePicture?: string;
+}
+declare interface BasicStudentI extends Omit<PublicStudentI, 'id'> {
 	email: string;
 	phone?: string;
-	profilePicture?: string;
 }
 declare interface StudentI<ID = string, TimeT extends string | Date = string> extends TimeStampI<TimeT>, BasicStudentI {
 	id: ID;

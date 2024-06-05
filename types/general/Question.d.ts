@@ -1,10 +1,10 @@
 declare interface QuestionInfoI {
 	question: string;
-	tag: string;
+	title: string;
 }
 declare interface BasicQuestionI<QuestionID = string> extends QuestionInfoI {
 	sessionID: QuestionID;
 }
-declare interface QuestionI<QuestionID = string> extends BasicQuestionI<QuestionID> {
+declare interface QuestionI<QuestionID = string> extends QuestionInfoI {
 	id: QuestionID;
 }

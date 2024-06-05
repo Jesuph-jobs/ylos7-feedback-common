@@ -7,7 +7,8 @@ declare interface SessionStatusI {
 declare type SessionStatus = keyof SessionStatusI;
 declare interface SessionInfoI {
 	name: string;
-	description: string;
+	title: string;
+	description: string[];
 	note: string;
 }
 declare interface BasicSessionI<SessionID = string, TimeT extends string | Date = string> extends SessionInfoI {
@@ -20,4 +21,11 @@ declare interface SessionI<SessionID = string, TimeT extends string | Date = str
 	extends TimeStampI<TimeT>,
 		BasicSessionI<SessionID, TimeT> {
 	id: SessionID;
+}
+
+declare interface SessionDetailI {
+	session: SessionInfoI;
+	questions: QuestionI[];
+	participants: PublicStudentI[];
+	rater: PublicStudentI;
 }
