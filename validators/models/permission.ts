@@ -1,7 +1,7 @@
 import { z } from '../defaultZod';
 type Permissions = Readonly<[PermissionsEnum, ...PermissionsEnum[]]>;
 
-const permissionsMap: Record<PermissionsEnum, PermissionsEnum> = {
+export const permissionsMap: Record<PermissionsEnum, PermissionsEnum> = {
 	'admin:super': 'admin:super',
 	read: 'read',
 	write: 'write',

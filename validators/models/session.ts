@@ -1,7 +1,7 @@
 import { MyZodType, z } from '../defaultZod';
 import { arraySchema, mongoIDSchema, nameSchema, stringDateSchema } from '../elements';
 type SessionStatusEnum = Readonly<[SessionStatus, ...SessionStatus[]]>;
-const sessionStatuses: Record<SessionStatusI[SessionStatus], SessionStatus> = {
+export const sessionStatuses: Record<SessionStatusI[SessionStatus], SessionStatus> = {
 	active: 'A',
 	completed: 'C',
 	cancelled: 'c',
