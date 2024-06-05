@@ -12,5 +12,12 @@ declare interface UpdateUserShapeI {
 		id: string;
 	};
 }
+declare interface AddPermissionUserShapeI {
+	body: UserPermissionI;
+	query: any;
+	params: {
+		id: string;
+	};
+}
 
 declare type DeleteUserShapeI = GetUserShapeI;

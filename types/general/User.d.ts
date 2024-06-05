@@ -25,3 +25,7 @@ declare interface NecessaryUserI {
 	lastName: string;
 	email: string;
 }
+
+declare interface UserPermissionI {
+	permission: PermissionsEnum;
+}

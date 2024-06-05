@@ -116,7 +116,7 @@ export const uuidSchema = (msg?: ErrorsSchemaMsgI) =>
 			invalid_type_error: msg?.invalid || 'Invalid id',
 			description: msg?.description || 'The id of the document',
 		})
-		.regex(/^[0-9a-zA-Z]{10,15}$/, msg?.invalid || 'Invalid id')
+		.uuid(msg?.invalid || 'Invalid id')
 		.openapi('UUID', {
 			description: msg?.description || 'The id of the document',
 			example: Math.random().toString(36).substring(2, 15),

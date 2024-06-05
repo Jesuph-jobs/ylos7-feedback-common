@@ -5,11 +5,12 @@ declare interface SessionStatusI {
 	p: 'pending';
 }
 declare type SessionStatus = keyof SessionStatusI;
-
-declare interface BasicSessionI<SessionID = string, TimeT extends string | Date = string> {
+declare interface SessionInfoI {
 	name: string;
 	description: string;
 	note: string;
+}
+declare interface BasicSessionI<SessionID = string, TimeT extends string | Date = string> extends SessionInfoI {
 	startDate: TimeT;
 	endDate: TimeT;
 	status: SessionStatus;

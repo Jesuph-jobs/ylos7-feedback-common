@@ -1,12 +1,19 @@
-declare interface AnswerI<ID = string> {
-	questionId: ID;
-	answer: value;
+declare interface ParticipationKindI {
+	form: 'f';
+	result: 'r';
 }
-declare interface BasicFormI<ID = string> {
+declare type ParticipationKinds = ParticipationKindI[keyof ParticipationKindI];
+declare interface ParticipationInfo {
+	kind: ParticipationKinds;
+	uuid: string;
+}
+declare interface BasicParticipationI<ID = string> extends ParticipationInfo {
 	studentId: ID;
 	sessionId: ID;
-	answers: AnswerI<ID>[];
+	code: string;
 }
-declare interface FormI<ID = string> extends BasicFormI<ID> {
+declare interface ParticipationI<ID = string, TimeT extends string | Date = string>
+	extends BasicParticipationI<ID>,
+		TimeStampI<TimeT> {
 	id: ID;
 }

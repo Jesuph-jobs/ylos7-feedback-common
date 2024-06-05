@@ -12,7 +12,8 @@ export interface SessionDocumentI extends BasicSessionI<Types.ObjectId, Date> {}
 
 export interface SessionVirtuals {}
 export interface SessionInstanceMethods {
-	toOptimizedObject(): SessionI;
+	toOptimizedObject(this: SessionHydratedDocument): SessionI;
+	toBasicObject(this: SessionHydratedDocument): SessionInfoI;
 }
 /* QueryWithHelpers<SessionHydratedDocument | null, SessionHydratedDocument, SessionQueryHelpers, SessionDocumentI<ValidationHydratedDocument>,'findOne' >; */
 export interface SessionQueryHelpers {}
