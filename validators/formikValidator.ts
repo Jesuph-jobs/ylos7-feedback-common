@@ -3,7 +3,7 @@ import { ZodError, ZodTypeAny } from 'zod';
 export function SchemaValidator<T>(schema: ZodTypeAny) {
 	return (values: T) => {
 		try {
-			return schema.parse(values) as T;
+			schema.parse(values) as T;
 		} catch (error) {
 			if (error instanceof ZodError) {
 				return error.formErrors.fieldErrors;
