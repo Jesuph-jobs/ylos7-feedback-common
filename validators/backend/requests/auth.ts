@@ -1,5 +1,6 @@
-import { MyZodType, z } from '../../defaultZod';
-import { emailSchema, usernameSchema } from '../../elements';
+import { MyZodType, z } from '^common/defaultZod';
+import { emailSchema } from '^common/elements';
+
 import { LoginRequestSchema, RegisterRequestSchema } from '../generated/user';
 
 export const CheckAuthShapeSchema = z.object<MyZodType<CheckAuthShapeI>>({
@@ -9,18 +10,6 @@ export const CheckAuthShapeSchema = z.object<MyZodType<CheckAuthShapeI>>({
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
 		message: 'Query must be empty',
-	}),
-});
-
-export const CheckUsernameShapeSchema = z.object<MyZodType<CheckUsernameShapeI>>({
-	body: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Body must be empty',
-	}),
-	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
-	}),
-	params: z.object({
-		username: usernameSchema(),
 	}),
 });
 
