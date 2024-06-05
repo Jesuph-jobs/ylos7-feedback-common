@@ -1,15 +1,12 @@
-declare type SessionStatus =
-	| 'A' //'active'
-	| 'C' //'completed'
-	| 'c' //'cancelled'
-	| 'n'; //'not started';
-declare interface QuestionI<QuestionID = string> {
-	id: QuestionID;
-	question: string;
-	tag: string;
+declare interface SessionStatusI {
+	A: 'active';
+	C: 'completed';
+	c: 'cancelled';
+	p: 'pending';
 }
-declare interface SessionI<SessionID = string, TimeT extends string | Date = string> extends TimeStampI<TimeT> {
-	id: SessionID;
+declare type SessionStatus = keyof SessionStatusI;
+
+declare interface BasicSessionI<SessionID = string, TimeT extends string | Date = string> {
 	name: string;
 	description: string;
 	note: string;
@@ -17,5 +14,9 @@ declare interface SessionI<SessionID = string, TimeT extends string | Date = str
 	endDate: TimeT;
 	status: SessionStatus;
 	participants: SessionID[];
-	questions: QuestionI<SessionID>[];
+}
+declare interface SessionI<SessionID = string, TimeT extends string | Date = string>
+	extends TimeStampI<TimeT>,
+		BasicSessionI<SessionID, TimeT> {
+	id: SessionID;
 }

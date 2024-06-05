@@ -7,10 +7,12 @@ import {
 	ResolveSchemaOptions,
 	Types,
 } from 'mongoose';
-export interface FormDocumentI extends Omit<FormI<Types.ObjectId>, 'id'> {}
+export interface FormDocumentI extends BasicFormI<Types.ObjectId> {}
 
 export interface FormVirtuals {}
-export interface FormInstanceMethods {}
+export interface FormInstanceMethods {
+	toOptimizedObject(): FormI;
+}
 /* QueryWithHelpers<FormHydratedDocument | null, FormHydratedDocument, FormQueryHelpers, FormDocumentI<ValidationHydratedDocument>,'findOne' >; */
 export interface FormQueryHelpers {}
 export interface FormDocument

@@ -8,10 +8,12 @@ import {
 	ResolveSchemaOptions,
 	Types,
 } from 'mongoose';
-export interface SessionDocumentI extends Omit<SessionI<Types.ObjectId>, 'id' | 'createdAt' | 'updatedAt'> {}
+export interface SessionDocumentI extends BasicSessionI<Types.ObjectId, Date> {}
 
 export interface SessionVirtuals {}
-export interface SessionInstanceMethods {}
+export interface SessionInstanceMethods {
+	toOptimizedObject(): SessionI;
+}
 /* QueryWithHelpers<SessionHydratedDocument | null, SessionHydratedDocument, SessionQueryHelpers, SessionDocumentI<ValidationHydratedDocument>,'findOne' >; */
 export interface SessionQueryHelpers {}
 export interface SessionDocument

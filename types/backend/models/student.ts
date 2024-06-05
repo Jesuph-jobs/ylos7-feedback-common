@@ -6,15 +6,16 @@ import {
 	ObtainDocumentType,
 	ResolveSchemaOptions,
 } from 'mongoose';
-export interface StudentDocumentI extends Omit<StudentI, 'id' | 'createdAt' | 'updatedAt'> {}
 
 export interface StudentVirtuals {}
-export interface StudentInstanceMethods {}
-/* QueryWithHelpers<StudentHydratedDocument | null, StudentHydratedDocument, StudentQueryHelpers, StudentDocumentI<ValidationHydratedDocument>,'findOne' >; */
+export interface StudentInstanceMethods {
+	toOptimizedObject(): StudentI;
+}
+/* QueryWithHelpers<StudentHydratedDocument | null, StudentHydratedDocument, StudentQueryHelpers, BasicStudentI<ValidationHydratedDocument>,'findOne' >; */
 export interface StudentQueryHelpers {}
 export interface StudentDocument
 	extends ApplySchemaOptions<
-		ObtainDocumentType<StudentDocument, StudentDocumentI, ResolveSchemaOptions<StudentSchemaOptions>>,
+		ObtainDocumentType<StudentDocument, BasicStudentI, ResolveSchemaOptions<StudentSchemaOptions>>,
 		ResolveSchemaOptions<StudentSchemaOptions>
 	> {}
 export interface StudentHydratedDocument
@@ -29,11 +30,5 @@ export interface StudentSchemaOptions {
 	timestamps: true;
 }
 export interface StudentModel
-	extends Model<
-			StudentDocumentI,
-			StudentQueryHelpers,
-			StudentInstanceMethods,
-			StudentVirtuals,
-			StudentHydratedDocument
-		>,
+	extends Model<BasicStudentI, StudentQueryHelpers, StudentInstanceMethods, StudentVirtuals, StudentHydratedDocument>,
 		StudentStaticMethods {}
