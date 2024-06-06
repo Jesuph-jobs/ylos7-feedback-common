@@ -12,7 +12,7 @@ declare interface UpdateUserShapeI {
 		id: string;
 	};
 }
-declare interface AddPermissionUserShapeI {
+declare interface SetPermissionUserShapeI {
 	body: UserPermissionI;
 	query: any;
 	params: {

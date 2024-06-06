@@ -27,5 +27,5 @@ declare interface NecessaryUserI {
 }
 
 declare interface UserPermissionI {
-	permission: PermissionsIdEnum;
+	permissions: PermissionsIdEnum[];
 }
