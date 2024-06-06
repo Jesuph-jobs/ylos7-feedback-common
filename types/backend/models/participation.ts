@@ -16,7 +16,6 @@ export interface ParticipationInstanceMethods {
 	toOptimizedObject<B extends boolean>(
 		includesCode: B
 	): B extends true ? ParticipationI : Omit<ParticipationI, 'code'>;
-	toBasicObject(): ParticipationInfo;
 	comparePublicKey: (this: ParticipationHydratedDocument, publicKey: string) => Promise<boolean>;
 	generatePublicKey: (this: ParticipationHydratedDocument) => Promise<string>;
 	generateToken(this: ParticipationHydratedDocument): Promise<string>;

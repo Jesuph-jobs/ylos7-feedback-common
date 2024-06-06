@@ -3,14 +3,14 @@ declare interface ParticipationKindI {
 	result: 'r';
 }
 declare type ParticipationKinds = ParticipationKindI[keyof ParticipationKindI];
-declare interface ParticipationInfo {
-	kind: ParticipationKinds;
-	uuid: string;
-}
-declare interface BasicParticipationI<ID = string> extends ParticipationInfo {
+declare interface ParticipationsActors<ID = string> {
 	raterId: ID;
 	sessionId: ID;
+	kind: ParticipationKinds;
+}
+declare interface BasicParticipationI<ID = string> extends ParticipationsActors<ID> {
 	code: string;
+	uuid: string;
 }
 declare interface ParticipationI<ID = string, TimeT extends string | Date = string>
 	extends BasicParticipationI<ID>,
