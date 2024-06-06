@@ -26,7 +26,6 @@ export const basicSessionWithoutParticipantsSchema = ({
 	name,
 	note,
 	startDate,
-	status,
 	title,
 }: Partial<
 	Record<keyof BasicSessionNoParticipantI, ErrorsSchemaMsgI> & {
@@ -40,12 +39,12 @@ export const basicSessionWithoutParticipantsSchema = ({
 			endDate: stringDateSchema(endDate),
 			startDate: stringDateSchema(startDate),
 			note: z.string(note),
-			status: sessionStatusSchema(status),
 			title: z.string(title),
 		})
 		.openapi('BasicSession', { description: 'The basic session' });
 export const basicSessionSchema = ({
 	participants,
+	status,
 	...others
 }: Partial<
 	Record<keyof BasicSessionI, ErrorsSchemaMsgI> & { questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> }
@@ -54,6 +53,7 @@ export const basicSessionSchema = ({
 		.object<MyZodType<BasicSessionI<string, string | Date>>>({
 			...basicSessionWithoutParticipantsSchema(others || {}).shape,
 			participants: arraySchema(mongoIDSchema(participants)),
+			status: sessionStatusSchema(status),
 		})
 		.openapi('BasicSession', { description: 'The basic session' });
 

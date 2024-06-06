@@ -14,11 +14,11 @@ declare interface SessionInfoI {
 declare interface BasicSessionNoParticipantI<TimeT extends string | Date = string> extends SessionInfoI {
 	startDate: TimeT;
 	endDate: TimeT;
-	status: SessionStatus;
 }
 declare interface BasicSessionI<SessionID = string, TimeT extends string | Date = string>
 	extends BasicSessionNoParticipantI<TimeT> {
 	participants: SessionID[];
+	status: SessionStatus;
 }
 declare interface SessionI<SessionID = string, TimeT extends string | Date = string>
 	extends TimeStampI<TimeT>,
