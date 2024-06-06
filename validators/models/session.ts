@@ -28,18 +28,20 @@ export const basicSessionSchema = ({
 	participants,
 	startDate,
 	status,
+	title,
 }: Partial<
 	Record<keyof BasicSessionI, ErrorsSchemaMsgI> & { questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> }
 > = {}) =>
 	z
 		.object<MyZodType<BasicSessionI<string, string | Date>>>({
 			name: nameSchema(name),
-			description: z.string(description),
+			description: arraySchema(z.string(description)),
 			endDate: stringDateSchema(endDate),
 			startDate: stringDateSchema(startDate),
 			note: z.string(note),
 			status: sessionStatusSchema(status),
 			participants: arraySchema(mongoIDSchema(participants)),
+			title: z.string(title),
 		})
 		.openapi('BasicSession', { description: 'The basic session' });
 
