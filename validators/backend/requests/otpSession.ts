@@ -23,7 +23,7 @@ export const SendOTPSessionGetSchema = () =>
 	z.object<MyZodType<OTPSessionSendShapeI>>({
 		query: OTPSessionSendSchema(),
 		body: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-			message: 'Query must be empty',
+			message: 'Body must be empty',
 		}),
 	});
 export const ResetPasswordRequestSchema = () =>
