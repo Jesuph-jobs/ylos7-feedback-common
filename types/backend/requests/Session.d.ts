@@ -6,7 +6,7 @@ declare interface GetSessionShapeI {
 	};
 }
 declare interface UpdateSessionShapeI {
-	body: Partial<Omit<BasicSessionI<string, string | Date>, 'participants'>>;
+	body: Partial<BasicSessionNoParticipantI<string, string | Date>>;
 	query: any;
 	params: {
 		id: string;
@@ -14,7 +14,7 @@ declare interface UpdateSessionShapeI {
 }
 
 declare interface CreateSessionShapeI {
-	body: Omit<BasicSessionI<string, string | Date>, 'participants'>;
+	body: BasicSessionNoParticipantI<string | Date>;
 	query: any;
 	params: any;
 }

@@ -29,10 +29,12 @@ export const basicSessionWithoutParticipantsSchema = ({
 	status,
 	title,
 }: Partial<
-	Record<keyof BasicSessionI, ErrorsSchemaMsgI> & { questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> }
+	Record<keyof BasicSessionNoParticipantI, ErrorsSchemaMsgI> & {
+		questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>>;
+	}
 > = {}) =>
 	z
-		.object<MyZodType<Omit<BasicSessionI<string, string | Date>, 'participants'>>>({
+		.object<MyZodType<BasicSessionNoParticipantI<string | Date>>>({
 			name: nameSchema(name),
 			description: arraySchema(z.string(description)),
 			endDate: stringDateSchema(endDate),
