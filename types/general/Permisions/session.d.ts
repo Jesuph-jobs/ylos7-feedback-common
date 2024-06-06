@@ -1,5 +1,5 @@
 declare type SessionGlobalPermissionsIdsI = 'session:all' | 'session:view';
-declare type SessionManagementPermissionsIdsI = 'session:create' | 'session:edit';
+declare type SessionManagementPermissionsIdsI = 'session:create' | 'session:edit' | 'session:delete';
 declare type SessionResultManagementPermissionsIdsI =
 	| 'session:results:all'
 	| 'session:results:view'

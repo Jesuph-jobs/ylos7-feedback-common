@@ -1,5 +1,5 @@
 import { MyZodType, z } from '../defaultZod';
-import { mongoIDSchema, otpSchema, stringDateSchema, uuidSchema } from '../elements';
+import { booleanSchema, mongoIDSchema, otpSchema, stringDateSchema, uuidSchema } from '../elements';
 type ParticipationKindsEnum = Readonly<[ParticipationKinds, ...ParticipationKinds[]]>;
 export const participationStatuses: ParticipationKindI = {
 	form: 'f',
@@ -24,6 +24,7 @@ export const basicParticipationSchema = ({
 	sessionId,
 	raterId,
 	uuid,
+	done,
 }: Partial<
 	Record<keyof BasicParticipationI, ErrorsSchemaMsgI> & {
 		questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>>;
@@ -36,18 +37,16 @@ export const basicParticipationSchema = ({
 			code: otpSchema(code),
 			kind: participationStatusSchema(kind),
 			uuid: uuidSchema(uuid),
+			done: booleanSchema(done),
 		})
 		.openapi('BasicParticipation', { description: 'The basic participation' });
 
 export const participationSchema = ({
 	id,
-	code,
-	kind,
-	sessionId,
-	raterId,
-	uuid,
+
 	createdAt,
 	updatedAt,
+	...rest
 }: Partial<
 	Record<keyof ParticipationI, ErrorsSchemaMsgI> & {
 		questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>>;
@@ -55,13 +54,7 @@ export const participationSchema = ({
 > = {}) =>
 	z
 		.object<MyZodType<ParticipationI<string, string | Date>>>({
-			...basicParticipationSchema({
-				code,
-				kind,
-				sessionId,
-				raterId,
-				uuid,
-			}).shape,
+			...basicParticipationSchema(rest || {}).shape,
 			id: mongoIDSchema(id),
 			createdAt: stringDateSchema(createdAt),
 			updatedAt: stringDateSchema(updatedAt),

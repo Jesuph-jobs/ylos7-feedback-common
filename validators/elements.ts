@@ -196,3 +196,16 @@ export const stringDateSchema = (msg?: ErrorsSchemaMsgI) =>
 		invalid_type_error: msg?.invalid || 'Invalid date',
 		description: msg?.description || 'A date',
 	}) as ZodType<Date> | ZodType<string>;
+export const ratingSchema = (msg?: ErrorsSchemaMsgI) =>
+	z
+		.number({
+			required_error: msg?.required || 'Rating is required',
+			invalid_type_error: msg?.invalid || 'Invalid rating',
+			description: msg?.description || 'A rating',
+		})
+		.min(0, 'Rating must be at least 0')
+		.max(5, 'Rating cannot be more than 5')
+		.openapi('Rating', {
+			description: msg?.description || 'A rating',
+			format: 'rating',
+		});

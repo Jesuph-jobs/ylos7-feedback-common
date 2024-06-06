@@ -28,7 +28,9 @@ export interface QuestionHydratedDocument
 		QuestionQueryHelpers
 	> {}
 
-export interface QuestionStaticMethods {}
+export interface QuestionStaticMethods {
+	checkIfAllIdsExist(this: QuestionModel, ids: (Types.ObjectId | string)[]): Promise<boolean>;
+}
 export interface QuestionSchemaOptions {
 	timestamps: true;
 }

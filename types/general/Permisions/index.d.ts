@@ -2,7 +2,8 @@ declare type GeneralPermissionsIdsEnum =
 	| AdminPermissionsIdsI
 	| StudentPermissionsIdsI
 	| SessionPermissionsIdsI
-	| QuestionPermissionsIdsI;
+	| QuestionPermissionsIdsI
+	| FileUploadPermissionsIdsI;
 declare type PermissionsIdEnum = 'super:admin' | GeneralPermissionsIdsEnum;
 
 declare interface PermissionsI {

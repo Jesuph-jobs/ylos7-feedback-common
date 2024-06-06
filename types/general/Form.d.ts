@@ -11,6 +11,7 @@ declare interface ParticipationsActors<ID = string> {
 declare interface BasicParticipationI<ID = string> extends ParticipationsActors<ID> {
 	code: string;
 	uuid: string;
+	done: boolean;
 }
 declare interface ParticipationI<ID = string, TimeT extends string | Date = string>
 	extends BasicParticipationI<ID>,

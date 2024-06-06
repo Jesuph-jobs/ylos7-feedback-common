@@ -1,6 +1,7 @@
 import { z } from '../../defaultZod';
 
 import { AdminPermissions } from './admin';
+import { FileUploadPermissions } from './file';
 import { QuestionPermissions } from './question';
 import { SessionPermissions } from './session';
 import { StudentPermissions } from './student';
@@ -10,6 +11,7 @@ export const generalPermissionsMap: Record<GeneralPermissionsIdsEnum, Permission
 	...StudentPermissions,
 	...SessionPermissions,
 	...QuestionPermissions,
+	...FileUploadPermissions,
 };
 export const permissionsMap: Record<PermissionsIdEnum, PermissionsI> = {
 	'super:admin': {

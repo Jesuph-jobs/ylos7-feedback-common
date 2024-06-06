@@ -3,7 +3,7 @@ export const SessionPermissions: Record<SessionPermissionsIdsI, PermissionsI> = 
 		id: 'session:all',
 		name: 'All Session',
 		description: 'All the session management permissions',
-		requires: ['session:view', 'session:edit', 'session:create'],
+		requires: ['session:view', 'session:edit', 'session:create', 'session:delete'],
 	},
 	'session:view': {
 		id: 'session:view',
@@ -22,6 +22,12 @@ export const SessionPermissions: Record<SessionPermissionsIdsI, PermissionsI> = 
 		id: 'session:create',
 		name: 'Create Session',
 		description: 'Create a new Session',
+		requires: ['session:view'],
+	},
+	'session:delete': {
+		id: 'session:delete',
+		name: 'Delete Session',
+		description: 'Delete a Session',
 		requires: ['session:view'],
 	},
 	'session:participants:add': {
@@ -97,4 +103,4 @@ export const SessionPermissions: Record<SessionPermissionsIdsI, PermissionsI> = 
 		requires: ['session:state:activate', 'session:state:complete', 'session:state:cancel', 'session:state:reset'],
 	},
 };
-export const SessionPermissionsList = Object.keys(SessionPermissions) as unknown as SessionPermissionsIdsI;
+export const SessionPermissionsList = Object.keys(SessionPermissions) as SessionPermissionsIdsI[];

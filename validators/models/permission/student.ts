@@ -31,4 +31,4 @@ export const StudentPermissions: Record<StudentPermissionsIdsI, PermissionsI> = 
 		requires: ['student:view'],
 	},
 };
-export const StudentPermissionsList = Object.keys(StudentPermissions) as unknown as StudentPermissionsIdsI;
+export const StudentPermissionsList = Object.keys(StudentPermissions) as StudentPermissionsIdsI[];

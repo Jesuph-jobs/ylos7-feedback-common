@@ -14,3 +14,11 @@ declare interface loginParticipationShapeI {
 		uuid: string;
 	};
 }
+
+declare interface submitAnswersShapeI {
+	body: {
+		answers: AnswerInfoI[];
+	};
+	query: any;
+	params: any;
+}

@@ -15,14 +15,14 @@ export const AdminPermissions: Record<AdminPermissionsIdsI, PermissionsI> = {
 		id: 'admin:edit',
 		name: 'Edit Admin',
 		description: 'Edit Admin general information',
-		requires: ['admin:view'],
+		requires: ['admin:view', 'file:upload'],
 	},
 
 	'admin:create': {
 		id: 'admin:create',
 		name: 'Create Admin',
 		description: 'Create a new Admin',
-		requires: ['admin:view'],
+		requires: ['admin:view', 'file:upload'],
 	},
 };
-export const AdminPermissionsList = Object.keys(AdminPermissions) as unknown as AdminPermissionsIdsI;
+export const AdminPermissionsList = Object.keys(AdminPermissions) as AdminPermissionsIdsI[];
