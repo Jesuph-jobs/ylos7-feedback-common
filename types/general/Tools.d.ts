@@ -1,7 +1,9 @@
 declare interface MyFile {
-	name: string;
+	fieldname: string;
 	originalname: string;
-	location?: string;
+	encoding: string;
+	mimetype: string;
+	path: string;
 	size: number;
-	url: string;
+	filename: string;
 }
