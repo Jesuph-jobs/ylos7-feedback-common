@@ -7,7 +7,13 @@ export const sessionStatuses: Record<SessionStatusI[SessionStatus], SessionStatu
 	cancelled: 'c',
 	pending: 'p',
 };
-export const sessionStatusesArray = Object.values(sessionStatuses) as unknown as SessionStatusEnum;
+export const sessionStatusesMap: Record<SessionStatus, SessionStatusI[SessionStatus]> = {
+	A: 'active',
+	C: 'completed',
+	c: 'cancelled',
+	p: 'pending',
+};
+export const sessionStatusesArray = Object.keys(sessionStatusesMap) as unknown as SessionStatusEnum;
 export const sessionStatusSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
 		.enum<SessionStatus, SessionStatusEnum>(sessionStatusesArray, {
