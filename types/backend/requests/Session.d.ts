@@ -24,7 +24,7 @@ declare interface UpdateSessionAddParticipantShapeI {
 	query: any;
 	params: {
 		id: string;
-		participant: string;
+		participantId: string;
 	};
 }
 

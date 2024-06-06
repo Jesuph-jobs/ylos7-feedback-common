@@ -42,7 +42,7 @@ export const UpdateSessionAddParticipantShapeSchema = z.object<MyZodType<UpdateS
 	}),
 	params: z.object({
 		id: mongoIDSchema(),
-		participant: mongoIDSchema(),
+		participantId: mongoIDSchema(),
 	}),
 });
 
