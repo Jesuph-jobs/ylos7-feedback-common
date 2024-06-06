@@ -1,1 +1,1 @@
-declare type PermissionsEnum = 'admin:super' | 'read' | 'write';
+declare type PermissionsIdEnum = 'admin:super' | 'read' | 'write';

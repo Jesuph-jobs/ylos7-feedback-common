@@ -1,5 +1,5 @@
 declare interface UserAfterRegistrationI {
-	permissions: PermissionsEnum[];
+	permissions: PermissionsIdEnum[];
 }
 declare interface BasicUserI<TimeT extends string | Date = string>
 	extends Omit<UserRegistrationI, 'password' | 'confirmPassword'>,
@@ -27,5 +27,5 @@ declare interface NecessaryUserI {
 }
 
 declare interface UserPermissionI {
-	permission: PermissionsEnum;
+	permission: PermissionsIdEnum;
 }

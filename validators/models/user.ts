@@ -82,7 +82,7 @@ export const UserDocumentSchema = (
 				lastName: nameSchema(lastName, 'Last name'),
 				enabled: booleanSchema(enabled),
 				lastLogin: dateSchema(lastLogin).optional(),
-				permissions: arraySchema<PermissionsEnum>(permissionSchema(permissions)),
+				permissions: arraySchema<PermissionsIdEnum>(permissionSchema(permissions)),
 			},
 			{
 				description: DocumentUserMsg.description || 'User document Schema',
@@ -116,7 +116,7 @@ export const PublicUserSchema = (
 				createdAt: stringDateSchema(createdAt),
 				updatedAt: stringDateSchema(updatedAt),
 				id: mongoIDSchema(id),
-				permissions: arraySchema<PermissionsEnum>(permissionSchema(permissions)),
+				permissions: arraySchema<PermissionsIdEnum>(permissionSchema(permissions)),
 				profilePicture: urlSchema(profilePicture).optional(),
 			},
 			{
