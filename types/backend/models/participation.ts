@@ -7,6 +7,8 @@ import {
 	ResolveSchemaOptions,
 	Types,
 } from 'mongoose';
+
+import { SessionHydratedDocument } from './session';
 export interface ParticipationDocumentI extends BasicParticipationI<Types.ObjectId> {}
 
 export interface ParticipationVirtuals {}
@@ -18,6 +20,8 @@ export interface ParticipationInstanceMethods {
 	comparePublicKey: (this: ParticipationHydratedDocument, publicKey: string) => Promise<boolean>;
 	generatePublicKey: (this: ParticipationHydratedDocument) => Promise<string>;
 	generateToken(this: ParticipationHydratedDocument): Promise<string>;
+	getRater(this: ParticipationHydratedDocument): Promise<PublicStudentI>;
+	getSession(this: ParticipationHydratedDocument): Promise<SessionHydratedDocument>;
 }
 /* QueryWithHelpers<ParticipationHydratedDocument | null, ParticipationHydratedDocument, ParticipationQueryHelpers, ParticipationDocumentI<ValidationHydratedDocument>,'findOne' >; */
 export interface ParticipationQueryHelpers {}

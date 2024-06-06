@@ -8,7 +8,7 @@ declare interface ParticipationInfo {
 	uuid: string;
 }
 declare interface BasicParticipationI<ID = string> extends ParticipationInfo {
-	studentId: ID;
+	raterId: ID;
 	sessionId: ID;
 	code: string;
 }

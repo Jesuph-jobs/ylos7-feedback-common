@@ -22,7 +22,7 @@ export const basicParticipationSchema = ({
 	code,
 	kind,
 	sessionId,
-	studentId,
+	raterId,
 	uuid,
 }: Partial<
 	Record<keyof BasicParticipationI, ErrorsSchemaMsgI> & {
@@ -31,7 +31,7 @@ export const basicParticipationSchema = ({
 > = {}) =>
 	z
 		.object<MyZodType<BasicParticipationI<string>>>({
-			studentId: mongoIDSchema(studentId),
+			raterId: mongoIDSchema(raterId),
 			sessionId: mongoIDSchema(sessionId),
 			code: otpSchema(code),
 			kind: participationStatusSchema(kind),
@@ -44,7 +44,7 @@ export const participationSchema = ({
 	code,
 	kind,
 	sessionId,
-	studentId,
+	raterId,
 	uuid,
 	createdAt,
 	updatedAt,
@@ -59,7 +59,7 @@ export const participationSchema = ({
 				code,
 				kind,
 				sessionId,
-				studentId,
+				raterId,
 				uuid,
 			}).shape,
 			id: mongoIDSchema(id),

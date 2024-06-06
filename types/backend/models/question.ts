@@ -13,7 +13,6 @@ export interface QuestionDocumentI extends BasicQuestionI<Types.ObjectId> {}
 export interface QuestionVirtuals {}
 export interface QuestionInstanceMethods {
 	toOptimizedObject(this: QuestionHydratedDocument): QuestionI;
-	toBasicObject(this: QuestionHydratedDocument): QuestionInfoI;
 }
 /* QueryWithHelpers<QuestionHydratedDocument | null, QuestionHydratedDocument, QuestionQueryHelpers, QuestionDocumentI<ValidationHydratedDocument>,'findOne' >; */
 export interface QuestionQueryHelpers {}

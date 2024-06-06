@@ -12,5 +12,18 @@ declare interface UpdateQuestionShapeI {
 		id: string;
 	};
 }
-declare type GetQuestionsShapeI = GetQuestionShapeI;
+declare interface GetQuestionsShapeI {
+	body: any;
+	query: any;
+	params: {
+		sessionId: string;
+	};
+}
+declare interface CreateQuestionsShapeI {
+	body: QuestionInfoI;
+	query: any;
+	params: {
+		sessionId: string;
+	};
+}
 declare type DeleteQuestionShapeI = GetQuestionShapeI;

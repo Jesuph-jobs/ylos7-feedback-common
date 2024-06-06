@@ -5,3 +5,12 @@ declare interface GetParticipationShapeI {
 		uuid: string;
 	};
 }
+declare interface loginParticipationShapeI {
+	body: {
+		code: string;
+	};
+	query: any;
+	params: {
+		uuid: string;
+	};
+}

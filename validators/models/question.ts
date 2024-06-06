@@ -2,30 +2,29 @@ import { mongoIDSchema } from '^common/elements';
 
 import { MyZodType, z } from '../defaultZod';
 
+export const questionInfoSchema = ({ question, title }: Partial<Record<keyof QuestionInfoI, ErrorsSchemaMsgI>> = {}) =>
+	z
+		.object<MyZodType<QuestionInfoI>>({
+			question: z.string(question),
+			title: z.string(title),
+		})
+		.openapi('Basic Question', { description: 'Basic question' });
 export const basicQuestionsSchema = ({
 	question,
-	tag,
+	title,
 	sessionID,
 }: Partial<Record<keyof BasicQuestionI, ErrorsSchemaMsgI>> = {}) =>
 	z
 		.object<MyZodType<BasicQuestionI>>({
-			question: z.string(question),
-			tag: z.string(tag),
+			...questionInfoSchema({ question, title }).shape,
 			sessionID: mongoIDSchema(sessionID),
 		})
 		.openapi('Basic Question', { description: 'Basic question' });
 
-export const questionsSchema = ({
-	id,
-	question,
-	tag,
-	sessionID,
-}: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> = {}) =>
+export const questionsSchema = ({ id, question, title }: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> = {}) =>
 	z
 		.object<MyZodType<QuestionI>>({
 			id: mongoIDSchema(id),
-			question: z.string(question),
-			tag: z.string(tag),
-			sessionID: mongoIDSchema(sessionID),
+			...questionInfoSchema({ question, title }).shape,
 		})
 		.openapi('Question', { description: 'The question' });
