@@ -20,12 +20,11 @@ export const sessionStatusSchema = (msg?: ErrorsSchemaMsgI) =>
 			format: 'active | inactive | completed',
 		});
 
-export const basicSessionSchema = ({
+export const basicSessionWithoutParticipantsSchema = ({
 	description,
 	endDate,
 	name,
 	note,
-	participants,
 	startDate,
 	status,
 	title,
@@ -33,15 +32,26 @@ export const basicSessionSchema = ({
 	Record<keyof BasicSessionI, ErrorsSchemaMsgI> & { questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> }
 > = {}) =>
 	z
-		.object<MyZodType<BasicSessionI<string, string | Date>>>({
+		.object<MyZodType<Omit<BasicSessionI<string, string | Date>, 'participants'>>>({
 			name: nameSchema(name),
 			description: arraySchema(z.string(description)),
 			endDate: stringDateSchema(endDate),
 			startDate: stringDateSchema(startDate),
 			note: z.string(note),
 			status: sessionStatusSchema(status),
-			participants: arraySchema(mongoIDSchema(participants)),
 			title: z.string(title),
+		})
+		.openapi('BasicSession', { description: 'The basic session' });
+export const basicSessionSchema = ({
+	participants,
+	...others
+}: Partial<
+	Record<keyof BasicSessionI, ErrorsSchemaMsgI> & { questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> }
+> = {}) =>
+	z
+		.object<MyZodType<BasicSessionI<string, string | Date>>>({
+			...basicSessionWithoutParticipantsSchema(others || {}).shape,
+			participants: arraySchema(mongoIDSchema(participants)),
 		})
 		.openapi('BasicSession', { description: 'The basic session' });
 
