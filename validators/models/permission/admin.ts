@@ -26,3 +26,8 @@ export const AdminPermissions: Record<AdminPermissionsIdsI, PermissionsI> = {
 	},
 };
 export const AdminPermissionsList = Object.keys(AdminPermissions) as AdminPermissionsIdsI[];
+export const AdminPermissionsListing: PermissionsListingI = {
+	title: 'Admin Permissions',
+	description: 'Permissions related to Admins',
+	permissions: AdminPermissionsList,
+};

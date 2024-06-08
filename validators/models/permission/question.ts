@@ -32,3 +32,8 @@ export const QuestionPermissions: Record<QuestionPermissionsIdsI, PermissionsI> 
 	}, */
 };
 export const QuestionPermissionsList = Object.keys(QuestionPermissions) as QuestionPermissionsIdsI[];
+export const QuestionPermissionsListing: PermissionsListingI = {
+	title: 'Question Permissions',
+	description: 'Permissions related to Questions',
+	permissions: QuestionPermissionsList,
+};

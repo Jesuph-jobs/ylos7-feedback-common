@@ -32,3 +32,8 @@ export const StudentPermissions: Record<StudentPermissionsIdsI, PermissionsI> = 
 	},
 };
 export const StudentPermissionsList = Object.keys(StudentPermissions) as StudentPermissionsIdsI[];
+export const StudentPermissionsListing: PermissionsListingI = {
+	title: 'Student Permissions',
+	description: 'Permissions related to Students',
+	permissions: StudentPermissionsList,
+};

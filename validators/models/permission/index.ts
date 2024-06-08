@@ -1,10 +1,11 @@
 import { z } from '../../defaultZod';
 
-import { AdminPermissions } from './admin';
-import { FileUploadPermissions } from './file';
-import { QuestionPermissions } from './question';
-import { SessionPermissions } from './session';
-import { StudentPermissions } from './student';
+import { AdminPermissions, AdminPermissionsListing } from './admin';
+import { FileUploadPermissions, FileUploadPermissionsListing } from './file';
+import { QuestionPermissions, QuestionPermissionsListing } from './question';
+import { SessionPermissions, SessionPermissionsListing } from './session';
+import { SettingsPermissions, SettingsPermissionsListing } from './settings';
+import { StudentPermissions, StudentPermissionsListing } from './student';
 
 export const generalPermissionsMap: Record<GeneralPermissionsIdsEnum, PermissionsI> = {
 	...AdminPermissions,
@@ -12,6 +13,7 @@ export const generalPermissionsMap: Record<GeneralPermissionsIdsEnum, Permission
 	...SessionPermissions,
 	...QuestionPermissions,
 	...FileUploadPermissions,
+	...SettingsPermissions,
 };
 export const permissionsMap: Record<PermissionsIdEnum, PermissionsI> = {
 	'super:admin': {
@@ -24,6 +26,15 @@ export const permissionsMap: Record<PermissionsIdEnum, PermissionsI> = {
 };
 export const generalPermissions = Object.keys(generalPermissionsMap) as unknown as GeneralPermissionsEnums;
 export const permissions = Object.keys(permissionsMap) as unknown as PermissionsEnums;
+
+export const permissionsListings: PermissionsListingI[] = [
+	AdminPermissionsListing,
+	StudentPermissionsListing,
+	SessionPermissionsListing,
+	QuestionPermissionsListing,
+	FileUploadPermissionsListing,
+	SettingsPermissionsListing,
+];
 
 export const permissionSchema = (msg?: ErrorsSchemaMsgI) =>
 	z

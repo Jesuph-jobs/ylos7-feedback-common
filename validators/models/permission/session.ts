@@ -30,6 +30,18 @@ export const SessionPermissions: Record<SessionPermissionsIdsI, PermissionsI> = 
 		description: 'Delete a Session',
 		requires: ['session:view'],
 	},
+	'session:participants:all': {
+		id: 'session:participants:all',
+		name: 'All Participants',
+		description: 'All the participants management permissions',
+		requires: ['session:participants:view', 'session:participants:add', 'session:participants:remove'],
+	},
+	'session:participants:view': {
+		id: 'session:participants:view',
+		name: 'View Participants',
+		description: 'View participants of a session',
+		requires: ['session:view'],
+	},
 	'session:participants:add': {
 		id: 'session:participants:add',
 		name: 'Add Participants',
@@ -42,17 +54,12 @@ export const SessionPermissions: Record<SessionPermissionsIdsI, PermissionsI> = 
 		description: 'Remove participants from a session',
 		requires: ['session:view'],
 	},
-	'session:participants:view': {
-		id: 'session:participants:view',
-		name: 'View Participants',
-		description: 'View participants of a session',
-		requires: ['session:view'],
-	},
-	'session:participants:all': {
-		id: 'session:participants:all',
-		name: 'All Participants',
-		description: 'All the participants management permissions',
-		requires: ['session:participants:view', 'session:participants:add', 'session:participants:remove'],
+
+	'session:state:all': {
+		id: 'session:state:all',
+		name: 'All State',
+		description: 'All the state management permissions',
+		requires: ['session:state:activate', 'session:state:complete', 'session:state:cancel', 'session:state:reset'],
 	},
 	'session:state:activate': {
 		id: 'session:state:activate',
@@ -96,11 +103,10 @@ export const SessionPermissions: Record<SessionPermissionsIdsI, PermissionsI> = 
 		description: 'Export results of a session',
 		requires: ['session:view'],
 	},
-	'session:state:all': {
-		id: 'session:state:all',
-		name: 'All State',
-		description: 'All the state management permissions',
-		requires: ['session:state:activate', 'session:state:complete', 'session:state:cancel', 'session:state:reset'],
-	},
 };
 export const SessionPermissionsList = Object.keys(SessionPermissions) as SessionPermissionsIdsI[];
+export const SessionPermissionsListing: PermissionsListingI = {
+	title: 'Session Permissions',
+	description: 'Permissions related to Sessions',
+	permissions: SessionPermissionsList,
+};

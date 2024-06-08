@@ -7,3 +7,8 @@ export const FileUploadPermissions: Record<FileUploadPermissionsIdsI, Permission
 	},
 };
 export const FileUploadPermissionsList = Object.keys(FileUploadPermissions) as FileUploadPermissionsIdsI[];
+export const FileUploadPermissionsListing: PermissionsListingI = {
+	title: 'File Upload Permissions',
+	description: 'Permissions related to File Uploads',
+	permissions: FileUploadPermissionsList,
+};
