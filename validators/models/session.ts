@@ -7,7 +7,13 @@ export const sessionStatuses: Record<SessionStatusI[SessionStatus], SessionStatu
 	cancelled: 'c',
 	pending: 'p',
 };
-export const sessionStatusesArray = Object.values(sessionStatuses) as unknown as SessionStatusEnum;
+export const sessionStatusesMap: Record<SessionStatus, SessionStatusI[SessionStatus]> = {
+	A: 'active',
+	C: 'completed',
+	c: 'cancelled',
+	p: 'pending',
+};
+export const sessionStatusesArray = Object.keys(sessionStatusesMap) as unknown as SessionStatusEnum;
 export const sessionStatusSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
 		.enum<SessionStatus, SessionStatusEnum>(sessionStatusesArray, {
@@ -20,28 +26,40 @@ export const sessionStatusSchema = (msg?: ErrorsSchemaMsgI) =>
 			format: 'active | inactive | completed',
 		});
 
-export const basicSessionSchema = ({
+export const basicSessionWithoutParticipantsSchema = ({
 	description,
 	endDate,
 	name,
 	note,
-	participants,
 	startDate,
-	status,
 	title,
 }: Partial<
-	Record<keyof BasicSessionI, ErrorsSchemaMsgI> & { questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> }
+	Record<keyof BasicSessionNoParticipantI, ErrorsSchemaMsgI> & {
+		questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>>;
+	}
 > = {}) =>
 	z
-		.object<MyZodType<BasicSessionI<string, string | Date>>>({
+		.object<MyZodType<BasicSessionNoParticipantI<string | Date>>>({
 			name: nameSchema(name),
 			description: arraySchema(z.string(description)),
 			endDate: stringDateSchema(endDate),
 			startDate: stringDateSchema(startDate),
 			note: z.string(note),
-			status: sessionStatusSchema(status),
-			participants: arraySchema(mongoIDSchema(participants)),
 			title: z.string(title),
+		})
+		.openapi('BasicSession', { description: 'The basic session' });
+export const basicSessionSchema = ({
+	participants,
+	status,
+	...others
+}: Partial<
+	Record<keyof BasicSessionI, ErrorsSchemaMsgI> & { questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> }
+> = {}) =>
+	z
+		.object<MyZodType<BasicSessionI<string, string | Date>>>({
+			...basicSessionWithoutParticipantsSchema(others || {}).shape,
+			participants: arraySchema(mongoIDSchema(participants)),
+			status: sessionStatusSchema(status),
 		})
 		.openapi('BasicSession', { description: 'The basic session' });
 

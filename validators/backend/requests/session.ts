@@ -1,19 +1,12 @@
 import { MyZodType, z } from '^common/defaultZod';
-import { mongoIDSchema, nameSchema, stringDateSchema } from '^common/elements';
-import { sessionStatusSchema } from '^common/models/session';
+import { arraySchema, mongoIDSchema, nameSchema, stringDateSchema } from '^common/elements';
+import { basicSessionWithoutParticipantsSchema, sessionStatusSchema } from '^common/models/session';
 
 import { GetUserShapeSchema } from './user';
 
 export const GetSessionShapeSchema = GetUserShapeSchema;
 export const CreateSessionShapeSchema = z.object<MyZodType<CreateSessionShapeI>>({
-	body: z.object({
-		name: nameSchema(),
-		description: z.string(),
-		endDate: stringDateSchema(),
-		startDate: stringDateSchema(),
-		note: z.string(),
-		status: sessionStatusSchema(),
-	}),
+	body: basicSessionWithoutParticipantsSchema(),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
 		message: 'Query must be empty',
 	}),
@@ -25,11 +18,12 @@ export const CreateSessionShapeSchema = z.object<MyZodType<CreateSessionShapeI>>
 export const UpdateSessionShapeSchema = z.object<MyZodType<UpdateSessionShapeI>>({
 	body: z.object({
 		name: nameSchema().optional(),
-		description: z.string().optional(),
+		description: arraySchema(z.string()).optional(),
 		endDate: stringDateSchema().optional(),
 		startDate: stringDateSchema().optional(),
 		note: z.string().optional(),
 		status: sessionStatusSchema().optional(),
+		title: z.string().optional(),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
 		message: 'Query must be empty',
@@ -48,7 +42,7 @@ export const UpdateSessionAddParticipantShapeSchema = z.object<MyZodType<UpdateS
 	}),
 	params: z.object({
 		id: mongoIDSchema(),
-		participant: mongoIDSchema(),
+		participantId: mongoIDSchema(),
 	}),
 });
 
