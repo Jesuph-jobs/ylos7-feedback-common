@@ -2,6 +2,7 @@ declare interface PublicStudentI {
 	id: string;
 	firstName: string;
 	lastName: string;
+	tag?: string;
 	profilePicture?: string;
 }
 declare interface SelectedStudentI extends PublicStudentI {
