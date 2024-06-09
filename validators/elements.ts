@@ -116,10 +116,10 @@ export const uuidSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
 		.string({
 			required_error: msg?.required || 'id is required',
-			invalid_type_error: msg?.invalid || 'Invalid id',
+			invalid_type_error: msg?.invalid || 'Invalid uuid',
 			description: msg?.description || 'The id of the document',
 		})
-		.uuid(msg?.invalid || 'Invalid id')
+		.uuid(msg?.invalid || 'Invalid uuid')
 		.openapi('UUID', {
 			description: msg?.description || 'The id of the document',
 			example: Math.random().toString(36).substring(2, 15),
