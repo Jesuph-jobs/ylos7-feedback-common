@@ -44,7 +44,7 @@ export interface OTPSessionStaticMethods {
 		this: OTPSessionModel,
 		email: string,
 		replaceUser?: boolean
-	) => Promise<[string, OTPSessionHydratedDocument, NecessaryUserI]>;
+	) => Promise<[string, OTPSessionHydratedDocument, UserHydratedDocument]>;
 
 	getNecessarySession: (
 		this: OTPSessionModel,

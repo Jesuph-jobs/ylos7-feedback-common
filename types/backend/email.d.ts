@@ -1,12 +1,10 @@
 declare interface EmailContexts {
 	resetPassword: ResetPasswordEmailContext;
-	validateEmail: ValidateEmailContext;
 	adminCreated: AdminCreatedEmailContext;
 	participationForm: ParticipationFormEmailContext;
 }
 declare interface AdditionalContext {
 	resetPassword: ResetPasswordEmailAdditionalContext;
-	validateEmail: ValidateEmailAdditionalContext;
 	adminCreated: AdminCreatedEmailAdditionalContext;
 	participationForm: ParticipationFormEmailAdditionalContext;
 }

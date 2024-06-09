@@ -1,6 +1,7 @@
 declare interface ParticipationFormEmailContext extends TemplateContexts {
-	student: BasicStudentI;
-	participation: BasicParticipationI;
+	name: string;
+	code: string;
+	formUrl: string;
 }
 declare interface ParticipationFormEmailAdditionalContext {
 	logo: string;

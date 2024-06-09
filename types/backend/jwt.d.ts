@@ -1,5 +1,5 @@
 /**
- * A9ra JWT Payload
+ * JWT Payload
  * @params id: string - The id of the user
  * @params exp: number - The expiration date of the token
  * @params pk: string - The public key of the user
@@ -12,6 +12,7 @@ declare interface YLOS7_SERVER_JWT_Payload {
 	issBy: string;
 	pk: string;
 }
+type YLOS7AppsI = string;
 declare interface YLOS7_SERVER_OAUTH_JWT_Payload extends YLOS7_SERVER_JWT_Payload {
-	issFor: A9raAppsI;
+	issFor: YLOS7AppsI;
 }

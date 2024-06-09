@@ -1,6 +1,7 @@
 declare interface ResetPasswordEmailContext extends TemplateContexts {
 	name: string;
 	otp: string;
+	resetUrl: string;
 }
 declare interface ResetPasswordEmailAdditionalContext {
 	logo: string;
