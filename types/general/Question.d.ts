@@ -3,7 +3,7 @@ declare interface QuestionInfoI {
 	title: string;
 }
 declare interface BasicQuestionI<QuestionID = string> extends QuestionInfoI {
-	sessionID: QuestionID;
+	sessionId: QuestionID;
 }
 declare interface QuestionI<QuestionID = string> extends QuestionInfoI {
 	id: QuestionID;
