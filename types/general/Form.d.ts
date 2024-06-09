@@ -20,5 +20,8 @@ declare interface ParticipationI<ID = string, TimeT extends string | Date = stri
 }
 declare interface PopulatedParticipationI<ID = string, TimeT extends string | Date = string>
 	extends ParticipationI<ID, TimeT> {
-	rater: StudentI;
+	raterFirstName: string;
+	raterLastName: string;
+	raterTag?: string;
+	raterProfilePicture?: string;
 }
