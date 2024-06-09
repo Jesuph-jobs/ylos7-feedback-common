@@ -19,7 +19,7 @@ export interface ParticipationInstanceMethods {
 	comparePublicKey: (this: ParticipationHydratedDocument, publicKey: string) => Promise<boolean>;
 	generatePublicKey: (this: ParticipationHydratedDocument) => Promise<string>;
 	generateToken(this: ParticipationHydratedDocument): Promise<string>;
-	getRater(this: ParticipationHydratedDocument): Promise<PublicStudentI>;
+	getRater(this: ParticipationHydratedDocument): Promise<StudentI>;
 	getSession(this: ParticipationHydratedDocument): Promise<SessionHydratedDocument>;
 }
 /* QueryWithHelpers<ParticipationHydratedDocument | null, ParticipationHydratedDocument, ParticipationQueryHelpers, ParticipationDocumentI<ValidationHydratedDocument>,'findOne' >; */
@@ -42,6 +42,12 @@ export interface ParticipationHydratedDocument
 
 export interface ParticipationStaticMethods {
 	getSessionFromToken(this: ParticipationModel, token: string): Promise<ParticipationHydratedDocument>;
+	getPopulatedParticipations(this: ParticipationModel, sessionId: string): Promise<PopulatedParticipationI[]>;
+	createParticipation(
+		this: ParticipationModel,
+		participation: ParticipationsActors<Types.ObjectId>,
+		language?: LanguagesI
+	): Promise<ParticipationHydratedDocument>;
 }
 export interface ParticipationSchemaOptions {
 	timestamps: true;
