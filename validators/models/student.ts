@@ -15,6 +15,7 @@ export const basicStudentsSchema = ({
 			firstName: nameSchema(firstName, 'First name'),
 			lastName: nameSchema(lastName, 'Last name'),
 			phone: phoneSchema(phone),
+			tag: z.string().optional(),
 			profilePicture: urlSchema(profilePicture).optional(),
 		})
 		.openapi('Basic Student', { description: 'Basic student' });
@@ -36,8 +37,10 @@ export const studentsSchema = ({
 			firstName: nameSchema(firstName, 'First name'),
 			lastName: nameSchema(lastName, 'Last name'),
 			phone: phoneSchema(phone),
+			tag: z.string().optional(),
 			profilePicture: urlSchema(profilePicture).optional(),
 			createdAt: stringDateSchema(createdAt),
 			updatedAt: stringDateSchema(updatedAt),
+			selected: z.boolean().optional(),
 		})
 		.openapi('Student', { description: 'The student' });
