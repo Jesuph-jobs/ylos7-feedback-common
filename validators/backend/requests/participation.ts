@@ -1,5 +1,5 @@
 import { MyZodType, z } from '^common/defaultZod';
-import { otpSchema, uuidSchema } from '^common/elements';
+import { arraySchema, otpSchema, uuidSchema } from '^common/elements';
 import { answerInfoSchema } from '^common/models/answer';
 
 export const GetParticipationShapeSchema = z.object<MyZodType<GetParticipationShapeI>>({
@@ -29,7 +29,7 @@ export const loginParticipationShapeSchema = z.object<MyZodType<loginParticipati
 
 export const submitAnswersShapeSchema = z.object<MyZodType<submitAnswersShapeI>>({
 	body: z.object({
-		answers: z.array(answerInfoSchema()),
+		answers: arraySchema(answerInfoSchema()),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
 		message: 'Query must be empty',

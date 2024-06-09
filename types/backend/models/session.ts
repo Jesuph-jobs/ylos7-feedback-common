@@ -15,6 +15,7 @@ export interface SessionInstanceMethods {
 	toOptimizedObject(this: SessionHydratedDocument): SessionI;
 	toBasicObject(this: SessionHydratedDocument): SessionInfoI;
 	getParticipants(this: SessionHydratedDocument): Promise<SelectedStudentI[]>;
+	getParticipantsExcept(this: SessionHydratedDocument, raterId: string): Promise<PublicStudentI[]>;
 	getQuestions(this: SessionHydratedDocument): Promise<QuestionI[]>;
 }
 /* QueryWithHelpers<SessionHydratedDocument | null, SessionHydratedDocument, SessionQueryHelpers, SessionDocumentI<ValidationHydratedDocument>,'findOne' >; */
