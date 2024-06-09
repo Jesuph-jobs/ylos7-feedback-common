@@ -61,7 +61,10 @@ export const phoneSchema = (msg?: ErrorsSchemaMsgI) =>
 		})
 		.min(9, msg?.small || 'Phone number must be at least 9 characters long')
 		.max(14, msg?.big || 'Phone number cannot be longer than 14 characters')
-		.regex(/^(00213|\+213|0)(5|6|7)[0-9]{8}$/, msg?.invalid || 'Phone number can only contain numbers')
+		.regex(
+			/^(?:(?:(?:\+|00)33[ ]?(?:\(0\)[ ]?)?)|0){1}[1-9]{1}([ .-]?)(?:\d{2}\1?){3}\d{2}$/,
+			msg?.invalid || 'Phone number must follow the format +33 6 00 00 00 00 or 06 00 00 00 00'
+		)
 		.openapi('Phone', {
 			description: msg?.description || 'A phone number in string format',
 			example: '0550000000',
