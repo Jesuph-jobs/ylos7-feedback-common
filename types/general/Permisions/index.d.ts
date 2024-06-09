@@ -3,7 +3,8 @@ declare type GeneralPermissionsIdsEnum =
 	| StudentPermissionsIdsI
 	| SessionPermissionsIdsI
 	| QuestionPermissionsIdsI
-	| FileUploadPermissionsIdsI;
+	| FileUploadPermissionsIdsI
+	| SettingsPermissionsIdsI;
 declare type PermissionsIdEnum = 'super:admin' | GeneralPermissionsIdsEnum;
 
 declare interface PermissionsI {
@@ -15,3 +16,8 @@ declare interface PermissionsI {
 
 declare type GeneralPermissionsEnums = Readonly<[GeneralPermissionsIdsEnum, ...GeneralPermissionsIdsEnum[]]>;
 declare type PermissionsEnums = Readonly<[PermissionsIdEnum, ...PermissionsIdEnum[]]>;
+declare interface PermissionsListingI {
+	title: string;
+	description: string;
+	permissions: PermissionsIdEnum[];
+}
