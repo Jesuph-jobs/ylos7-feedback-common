@@ -25,10 +25,11 @@ declare interface SessionI<SessionID = string, TimeT extends string | Date = str
 		BasicSessionI<SessionID, TimeT> {
 	id: SessionID;
 }
-
-declare interface SessionDetailI {
+declare interface BasicSessionNoParticipantInfoI {
 	session: SessionInfoI;
+	rater: PublicStudentI;
+}
+declare interface SessionDetailI extends BasicSessionNoParticipantInfoI {
 	questions: QuestionI[];
 	participants: PublicStudentI[];
-	rater: PublicStudentI;
 }
