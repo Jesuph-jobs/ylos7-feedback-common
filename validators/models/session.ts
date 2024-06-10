@@ -6,11 +6,11 @@ export const sessionStatuses: Record<SessionStatusI[SessionStatus], SessionStatu
 	cancelled: 'c',
 	pending: 'p',
 };
-export const sessionStatusesMap: Record<SessionStatus, SessionStatusI[SessionStatus]> = {
+export const sessionStatusesMap: Record<SessionStatus, string> = {
 	A: 'active',
-	C: 'completed',
-	c: 'cancelled',
-	p: 'pending',
+	C: 'terminé',
+	c: 'annulé',
+	p: 'en attente',
 };
 export const sessionStatusesArray = Object.keys(sessionStatusesMap) as unknown as MyEnum<SessionStatus>;
 export const sessionStatusSchema = (msg?: ErrorsSchemaMsgI) =>

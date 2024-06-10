@@ -1,8 +1,8 @@
 declare interface SessionStatusI {
 	A: 'active';
-	C: 'terminé';
-	c: 'annulé';
-	p: 'en attente';
+	C: 'completed';
+	c: 'cancelled';
+	p: 'pending';
 }
 declare type SessionStatus = keyof SessionStatusI;
 declare interface SessionInfoI {
