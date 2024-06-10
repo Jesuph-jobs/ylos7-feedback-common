@@ -8,7 +8,7 @@ export const GetSessionShapeSchema = GetUserShapeSchema;
 export const CreateSessionShapeSchema = z.object<MyZodType<CreateSessionShapeI>>({
 	body: basicSessionWithoutParticipantsSchema(),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.any().refine((params) => !params || Object.keys(params).length === 0, {
 		message: 'Params must be empty',
@@ -26,7 +26,7 @@ export const UpdateSessionShapeSchema = z.object<MyZodType<UpdateSessionShapeI>>
 		title: z.string().optional(),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		id: mongoIDSchema(),
@@ -35,10 +35,10 @@ export const UpdateSessionShapeSchema = z.object<MyZodType<UpdateSessionShapeI>>
 
 export const UpdateSessionAddParticipantShapeSchema = z.object<MyZodType<UpdateSessionAddParticipantShapeI>>({
 	body: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Body must be empty',
+		message: 'Body doit être vide',
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		id: mongoIDSchema(),

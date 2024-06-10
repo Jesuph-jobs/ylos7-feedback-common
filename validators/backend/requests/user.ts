@@ -3,12 +3,12 @@ import { arraySchema, emailSchema, mongoIDSchema } from '^common/elements';
 import { permissionSchema } from '^common/models/permission';
 
 export const GetUserShapeSchema = z.object<MyZodType<GetUserShapeI>>({
-	// body must be empty
+	// Body doit être vide
 	body: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Body must be empty',
+		message: 'Body doit être vide',
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		id: mongoIDSchema(),
@@ -22,7 +22,7 @@ export const UpdateUserShapeSchema = z.object<MyZodType<UpdateUserShapeI>>({
 		email: emailSchema().optional(),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		id: mongoIDSchema(),
@@ -33,7 +33,7 @@ export const SetPermissionUserShapeSchema = z.object<MyZodType<SetPermissionUser
 		permissions: arraySchema(permissionSchema()),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		id: mongoIDSchema(),

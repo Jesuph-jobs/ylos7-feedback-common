@@ -6,12 +6,12 @@ import { GetUserShapeSchema } from './user';
 
 export const GetQuestionShapeSchema = GetUserShapeSchema;
 export const GetQuestionsShapeSchema = z.object<MyZodType<GetQuestionsShapeI>>({
-	// body must be empty
+	// Body doit être vide
 	body: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Body must be empty',
+		message: 'Body doit être vide',
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		sessionId: mongoIDSchema(),
@@ -20,7 +20,7 @@ export const GetQuestionsShapeSchema = z.object<MyZodType<GetQuestionsShapeI>>({
 export const CreateQuestionsShapeSchema = z.object<MyZodType<CreateQuestionsShapeI>>({
 	body: questionInfoSchema(),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		sessionId: mongoIDSchema(),
@@ -32,7 +32,7 @@ export const UpdateQuestionShapeSchema = z.object<MyZodType<UpdateQuestionShapeI
 		tag: z.string().optional(),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		id: mongoIDSchema(),
