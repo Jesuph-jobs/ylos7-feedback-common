@@ -7,6 +7,7 @@ export const questionInfoSchema = ({ question, title }: Partial<Record<keyof Que
 		.object<MyZodType<QuestionInfoI>>({
 			question: z.string(question),
 			title: z.string(title),
+			type: z.enum(['importance', 'quality', 'frequency']),
 		})
 		.openapi('Basic Question', { description: 'Basic question' });
 
