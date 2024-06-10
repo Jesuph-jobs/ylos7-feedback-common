@@ -11,3 +11,19 @@ declare interface AnswerI<ID = string, TimeT extends string | Date = string>
 		TimeStampI<TimeT> {
 	id: ID;
 }
+declare interface AnswersSumI {
+	sum: number;
+	average: number;
+}
+
+declare interface GlobalAnswersI {
+	id: string;
+	student: PublicStudentI;
+	questions: QuestionsValuesI<AnswersSumI>;
+}
+
+declare interface GlobalAnswersCollectionI {
+	average: QuestionsValuesI<AnswersSumI>;
+	STDev: QuestionsValuesI<AnswersSumI>; // écart type
+	median: QuestionsValuesI<AnswersSumI>;
+}
