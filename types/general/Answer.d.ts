@@ -15,11 +15,23 @@ declare interface AnswersSumI {
 	sum: number;
 	average: number;
 }
+declare interface AnswersMutualI<V = number> {
+	effected: V;
+	given: V;
+}
+declare interface AnswersMutualResolvedI<V = number> extends AnswersMutualI<V> {
+	delta: V;
+}
 
 declare interface GlobalAnswersI {
 	id: string;
 	student: PublicStudentI;
 	questions: QuestionsValuesI<AnswersSumI>;
+}
+declare interface ParticipantAnswersI<T extends AnswersMutualI = AnswersMutualI> {
+	id: string;
+	student: PublicStudentI;
+	questions: QuestionsValuesI<T>;
 }
 
 declare interface GlobalAnswersCollectionI {
@@ -27,3 +39,4 @@ declare interface GlobalAnswersCollectionI {
 	STDev: QuestionsValuesI<AnswersSumI>; // écart type
 	median: QuestionsValuesI<AnswersSumI>;
 }
+declare type ParticipantAnswersCollectionI = QuestionsValuesI<AnswersMutualResolvedI>;
