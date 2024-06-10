@@ -41,7 +41,7 @@ export const basicSessionWithoutParticipantsSchema = ({
 	z
 		.object<MyZodType<BasicSessionNoParticipantI<string | Date>>>({
 			name: nameSchema(name),
-			description: arraySchema(z.string(description)),
+			description: arraySchema(z.string(description)).min(1, 'Description is required'),
 			endDate: stringDateSchema(endDate),
 			startDate: stringDateSchema(startDate),
 			note: z.string(note),
