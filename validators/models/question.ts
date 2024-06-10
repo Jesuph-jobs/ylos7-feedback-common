@@ -9,15 +9,16 @@ export const questionInfoSchema = ({ question, title }: Partial<Record<keyof Que
 			title: z.string(title),
 		})
 		.openapi('Basic Question', { description: 'Basic question' });
+
 export const basicQuestionsSchema = ({
 	question,
 	title,
-	sessionID,
+	sessionId,
 }: Partial<Record<keyof BasicQuestionI, ErrorsSchemaMsgI>> = {}) =>
 	z
 		.object<MyZodType<BasicQuestionI>>({
 			...questionInfoSchema({ question, title }).shape,
-			sessionID: mongoIDSchema(sessionID),
+			sessionId: mongoIDSchema(sessionId),
 		})
 		.openapi('Basic Question', { description: 'Basic question' });
 

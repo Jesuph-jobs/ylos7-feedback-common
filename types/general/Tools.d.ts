@@ -7,3 +7,5 @@ declare interface MyFile {
 	size: number;
 	filename: string;
 }
+
+type MyEnum<U extends string> = Readonly<[U, ...U[]]>;

@@ -24,8 +24,8 @@ export const permissionsMap: Record<PermissionsIdEnum, PermissionsI> = {
 	},
 	...generalPermissionsMap,
 };
-export const generalPermissions = Object.keys(generalPermissionsMap) as unknown as GeneralPermissionsEnums;
-export const permissions = Object.keys(permissionsMap) as unknown as PermissionsEnums;
+export const generalPermissions = Object.keys(generalPermissionsMap) as unknown as MyEnum<GeneralPermissionsIdsEnum>;
+export const permissions = Object.keys(permissionsMap) as unknown as MyEnum<PermissionsIdEnum>;
 
 export const permissionsListings: PermissionsListingI[] = [
 	AdminPermissionsListing,
@@ -38,7 +38,7 @@ export const permissionsListings: PermissionsListingI[] = [
 
 export const permissionSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
-		.enum<PermissionsIdEnum, PermissionsEnums>(permissions, {
+		.enum<PermissionsIdEnum, MyEnum<PermissionsIdEnum>>(permissions, {
 			invalid_type_error: msg?.invalid || 'Invalid permission',
 			required_error: msg?.required || 'Permission is required',
 			description: msg?.description || 'The permission',

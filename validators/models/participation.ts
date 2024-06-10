@@ -1,14 +1,13 @@
 import { MyZodType, z } from '../defaultZod';
 import { booleanSchema, mongoIDSchema, otpSchema, stringDateSchema, uuidSchema } from '../elements';
-type ParticipationKindsEnum = Readonly<[ParticipationKinds, ...ParticipationKinds[]]>;
 export const participationStatuses: ParticipationKindI = {
 	form: 'f',
 	result: 'r',
 };
-export const participationStatusesArray = Object.values(participationStatuses) as unknown as ParticipationKindsEnum;
+export const participationStatusesArray = Object.values(participationStatuses) as unknown as MyEnum<ParticipationKinds>;
 export const participationStatusSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
-		.enum<ParticipationKinds, ParticipationKindsEnum>(participationStatusesArray, {
+		.enum<ParticipationKinds, MyEnum<ParticipationKinds>>(participationStatusesArray, {
 			invalid_type_error: msg?.invalid || 'Invalid participation status',
 			required_error: msg?.required || 'Participation status is required',
 			description: msg?.description || 'The participation status',
