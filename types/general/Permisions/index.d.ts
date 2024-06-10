@@ -14,8 +14,6 @@ declare interface PermissionsI {
 	requires: PermissionsIdEnum[];
 }
 
-declare type GeneralPermissionsEnums = Readonly<[GeneralPermissionsIdsEnum, ...GeneralPermissionsIdsEnum[]]>;
-declare type PermissionsEnums = Readonly<[PermissionsIdEnum, ...PermissionsIdEnum[]]>;
 declare interface PermissionsListingI {
 	title: string;
 	description: string;

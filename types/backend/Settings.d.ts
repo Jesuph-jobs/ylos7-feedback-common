@@ -1,4 +1,5 @@
-declare interface SettingsMapI extends Record<string, any> {
+declare interface SettingsMapI {
 	//[key: string]: string;
 	defaultQuestions: [QuestionInfoI, QuestionInfoI, QuestionInfoI];
 }
+declare type SettingsKeys = keyof SettingsMapI;

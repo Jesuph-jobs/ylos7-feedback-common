@@ -1,6 +1,5 @@
 import { MyZodType, z } from '../defaultZod';
 import { arraySchema, mongoIDSchema, nameSchema, stringDateSchema } from '../elements';
-type SessionStatusEnum = Readonly<[SessionStatus, ...SessionStatus[]]>;
 export const sessionStatuses: Record<SessionStatusI[SessionStatus], SessionStatus> = {
 	active: 'A',
 	completed: 'C',
@@ -13,10 +12,10 @@ export const sessionStatusesMap: Record<SessionStatus, SessionStatusI[SessionSta
 	c: 'cancelled',
 	p: 'pending',
 };
-export const sessionStatusesArray = Object.keys(sessionStatusesMap) as unknown as SessionStatusEnum;
+export const sessionStatusesArray = Object.keys(sessionStatusesMap) as unknown as MyEnum<SessionStatus>;
 export const sessionStatusSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
-		.enum<SessionStatus, SessionStatusEnum>(sessionStatusesArray, {
+		.enum<SessionStatus, MyEnum<SessionStatus>>(sessionStatusesArray, {
 			invalid_type_error: msg?.invalid || 'Invalid session status',
 			required_error: msg?.required || 'Session status is required',
 			description: msg?.description || 'The session status',
