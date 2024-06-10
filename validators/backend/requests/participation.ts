@@ -3,12 +3,12 @@ import { arraySchema, otpSchema, uuidSchema } from '^common/elements';
 import { answerInfoSchema } from '^common/models/answer';
 
 export const GetParticipationShapeSchema = z.object<MyZodType<GetParticipationShapeI>>({
-	// body must be empty
+	// Body doit être vide
 	body: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Body must be empty',
+		message: 'Body doit être vide',
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		uuid: uuidSchema(),
@@ -20,7 +20,7 @@ export const loginParticipationShapeSchema = z.object<MyZodType<loginParticipati
 		code: otpSchema(),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		uuid: uuidSchema(),
@@ -32,7 +32,7 @@ export const submitAnswersShapeSchema = z.object<MyZodType<submitAnswersShapeI>>
 		answers: arraySchema(answerInfoSchema()),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.any(),
 });

@@ -15,7 +15,7 @@ export const UpdateStudentShapeSchema = z.object<MyZodType<UpdateStudentShapeI>>
 		profilePicture: urlSchema().optional(),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.object({
 		id: mongoIDSchema(),
@@ -25,7 +25,7 @@ export const UpdateStudentShapeSchema = z.object<MyZodType<UpdateStudentShapeI>>
 export const CreateStudentShapeSchema = z.object<MyZodType<CreateStudentShapeI>>({
 	body: basicStudentsSchema(),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
-		message: 'Query must be empty',
+		message: 'Query doit être vide',
 	}),
 	params: z.any().refine((params) => !params || Object.keys(params).length === 0, {
 		message: 'Params must be empty',
