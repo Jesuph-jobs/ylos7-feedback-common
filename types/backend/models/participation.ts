@@ -49,7 +49,11 @@ export interface ParticipationStaticMethods {
 		language?: LanguagesI
 	): Promise<ParticipationHydratedDocument>;
 	getGlobalAnswers(this: ParticipationModel, sessionId: string): Promise<GlobalAnswersI[]>;
-	getParticipationAnswers(this: ParticipationModel, participationId: string): Promise<ParticipantAnswersI[]>;
+	getParticipationAnswers(this: ParticipationModel, participationId: string): Promise<ParticipantResultI>;
+	getPublicParticipationCollection(
+		this: ParticipationModel,
+		participationId: string
+	): Promise<ParticipantAnswersCollectionI>;
 }
 export interface ParticipationSchemaOptions {
 	timestamps: true;
