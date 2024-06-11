@@ -2,11 +2,13 @@ declare interface EmailContexts {
 	resetPassword: ResetPasswordEmailContext;
 	adminCreated: AdminCreatedEmailContext;
 	participationForm: ParticipationFormEmailContext;
+	participationResult: ParticipationFormEmailContext;
 }
 declare interface AdditionalContext {
 	resetPassword: ResetPasswordEmailAdditionalContext;
 	adminCreated: AdminCreatedEmailAdditionalContext;
 	participationForm: ParticipationFormEmailAdditionalContext;
+	participationResult: ParticipationFormEmailAdditionalContext;
 }
 
 declare type EmailTemplates = keyof EmailContexts;

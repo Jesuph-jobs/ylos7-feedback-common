@@ -1,7 +1,7 @@
 declare interface ParticipationFormEmailContext extends TemplateContexts {
 	name: string;
 	code: string;
-	formUrl: string;
+	url: string;
 }
 declare interface ParticipationFormEmailAdditionalContext {
 	logo: string;

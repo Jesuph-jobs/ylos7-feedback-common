@@ -42,6 +42,11 @@ export interface ParticipationHydratedDocument
 
 export interface ParticipationStaticMethods {
 	getSessionFromToken(this: ParticipationModel, token: string): Promise<ParticipationHydratedDocument>;
+	convertSessionToResult(
+		this: ParticipationModel,
+		sessionId: Types.ObjectId,
+		language?: LanguagesI
+	): Promise<ParticipationI[]>;
 	getPopulatedParticipations(this: ParticipationModel, sessionId: string): Promise<PopulatedParticipationI[]>;
 	createParticipation(
 		this: ParticipationModel,
