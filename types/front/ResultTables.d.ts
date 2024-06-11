@@ -4,6 +4,6 @@ declare interface DataRenderI<U = GlobalAnswersI> {
 	colSpan?: number;
 }
 declare interface ColSpanI {
-	colSpan: number;
+	colSpan?: number;
 	label: string;
 }

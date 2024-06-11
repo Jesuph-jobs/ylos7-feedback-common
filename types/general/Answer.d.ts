@@ -22,6 +22,10 @@ declare interface AnswersMutualI<V = number> {
 declare interface AnswersMutualResolvedI<V = number> extends AnswersMutualI<V> {
 	delta: V;
 }
+declare interface AnswersMutualResI<V = number> extends AnswersMutualResolvedI<V> {
+	maximum: V;
+	minimum: V;
+}
 
 declare interface GlobalAnswersI {
 	id: string;
@@ -39,4 +43,5 @@ declare interface GlobalAnswersCollectionI {
 	STDev: QuestionsValuesI<AnswersSumI>; // écart type
 	median: QuestionsValuesI<AnswersSumI>;
 }
-declare type ParticipantAnswersCollectionI = QuestionsValuesI<AnswersMutualResolvedI>;
+declare type ParticipantAnswersCollectionI = QuestionsValuesI<AnswersMutualResI>;
+declare type ParticipantAnswersCollectionReverseI = AnswersMutualResI<QuestionsValuesI>;
