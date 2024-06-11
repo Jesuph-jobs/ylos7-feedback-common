@@ -3,10 +3,11 @@ declare interface QuestionsValuesI<V = number> {
 	quality: V;
 	frequency: V;
 }
+declare type QuestionsValuesKeysI = keyof QuestionsValuesI;
 declare interface QuestionInfoI {
 	question: string;
 	title: string;
-	type: keyof QuestionsValuesI;
+	type: QuestionsValuesKeysI;
 }
 declare interface BasicQuestionI<QuestionID = string> extends QuestionInfoI {
 	sessionId: QuestionID;

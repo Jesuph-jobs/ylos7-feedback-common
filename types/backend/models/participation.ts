@@ -48,6 +48,8 @@ export interface ParticipationStaticMethods {
 		participation: ParticipationsActors<Types.ObjectId>,
 		language?: LanguagesI
 	): Promise<ParticipationHydratedDocument>;
+	getGlobalAnswers(this: ParticipationModel, sessionId: string): Promise<GlobalAnswersI[]>;
+	getParticipationAnswers(this: ParticipationModel, participationId: string): Promise<ParticipantAnswersI[]>;
 }
 export interface ParticipationSchemaOptions {
 	timestamps: true;
