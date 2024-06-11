@@ -1,28 +1,32 @@
-import { MyZodType, z } from '../defaultZod';
-import { arraySchema, mongoIDSchema, nameSchema, stringDateSchema } from '../elements';
+import { MyZodType, z } from '^common/defaultZod';
+import { arraySchema, mongoIDSchema, nameSchema, stringDateSchema } from '^common/elements';
+
 export const sessionStatuses: Record<SessionStatusI[SessionStatus], SessionStatus> = {
 	active: 'A',
 	completed: 'C',
 	cancelled: 'c',
 	pending: 'p',
 };
+
 export const sessionStatusesMap: Record<SessionStatus, string> = {
-	A: 'active',
+	A: 'actif',
 	C: 'terminé',
 	c: 'annulé',
 	p: 'en attente',
 };
+
 export const sessionStatusesArray = Object.keys(sessionStatusesMap) as unknown as MyEnum<SessionStatus>;
+
 export const sessionStatusSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
 		.enum<SessionStatus, MyEnum<SessionStatus>>(sessionStatusesArray, {
-			invalid_type_error: msg?.invalid || 'Invalid session status',
-			required_error: msg?.required || 'Session status is required',
-			description: msg?.description || 'The session status',
+			invalid_type_error: msg?.invalid || 'Statut de session invalide',
+			required_error: msg?.required || 'Le statut de session est requis',
+			description: msg?.description || 'Le statut de la session',
 		})
 		.openapi('SessionStatus', {
-			description: msg?.description || 'The session status',
-			format: 'active | inactive | completed',
+			description: msg?.description || 'Le statut de la session',
+			format: 'actif | inactif | terminé',
 		});
 
 export const basicSessionWithoutParticipantsSchema = ({
@@ -40,13 +44,14 @@ export const basicSessionWithoutParticipantsSchema = ({
 	z
 		.object<MyZodType<BasicSessionNoParticipantI<string | Date>>>({
 			name: nameSchema(name),
-			description: arraySchema(z.string(description)).min(1, 'Description is required'),
+			description: arraySchema(z.string(description)).min(1, 'La description est requise'),
 			endDate: stringDateSchema(endDate),
 			startDate: stringDateSchema(startDate),
 			note: z.string(note),
 			title: z.string(title),
 		})
-		.openapi('BasicSession', { description: 'The basic session' });
+		.openapi('BasicSession', { description: 'La session de base' });
+
 export const basicSessionSchema = ({
 	participants,
 	status,
@@ -60,7 +65,7 @@ export const basicSessionSchema = ({
 			participants: arraySchema(mongoIDSchema(participants)),
 			status: sessionStatusSchema(status),
 		})
-		.openapi('BasicSession', { description: 'The basic session' });
+		.openapi('BasicSession', { description: 'La session de base' });
 
 export const sessionSchema = ({
 	description,
@@ -95,4 +100,4 @@ export const sessionSchema = ({
 			createdAt: stringDateSchema(createdAt),
 			updatedAt: stringDateSchema(updatedAt),
 		})
-		.openapi('Session', { description: 'The session' });
+		.openapi('Session', { description: 'La session' });

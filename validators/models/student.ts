@@ -1,6 +1,5 @@
+import { MyZodType, z } from '^common/defaultZod';
 import { emailSchema, mongoIDSchema, nameSchema, phoneSchema, stringDateSchema, urlSchema } from '^common/elements';
-
-import { MyZodType, z } from '../defaultZod';
 
 export const basicStudentsSchema = ({
 	email,
@@ -12,13 +11,13 @@ export const basicStudentsSchema = ({
 	z
 		.object<MyZodType<BasicStudentI>>({
 			email: emailSchema(email),
-			firstName: nameSchema(firstName, 'First name'),
-			lastName: nameSchema(lastName, 'Last name'),
+			firstName: nameSchema(firstName, 'Prénom'),
+			lastName: nameSchema(lastName, 'Nom de famille'),
 			phone: phoneSchema(phone),
 			tag: z.string().optional(),
 			profilePicture: urlSchema(profilePicture).optional(),
 		})
-		.openapi('Basic Student', { description: 'Basic student' });
+		.openapi('Étudiant de base', { description: 'Étudiant de base' });
 
 export const studentsSchema = ({
 	id,
@@ -34,8 +33,8 @@ export const studentsSchema = ({
 		.object<MyZodType<StudentI<string, string | Date>>>({
 			id: mongoIDSchema(id),
 			email: emailSchema(email),
-			firstName: nameSchema(firstName, 'First name'),
-			lastName: nameSchema(lastName, 'Last name'),
+			firstName: nameSchema(firstName, 'Prénom'),
+			lastName: nameSchema(lastName, 'Nom de famille'),
 			phone: phoneSchema(phone),
 			tag: z.string().optional(),
 			profilePicture: urlSchema(profilePicture).optional(),
@@ -43,4 +42,4 @@ export const studentsSchema = ({
 			updatedAt: stringDateSchema(updatedAt),
 			selected: z.boolean().optional(),
 		})
-		.openapi('Student', { description: 'The student' });
+		.openapi('Étudiant', { description: "L'étudiant" });

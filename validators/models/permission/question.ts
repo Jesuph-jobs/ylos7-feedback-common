@@ -1,39 +1,39 @@
 export const QuestionPermissions: Record<QuestionPermissionsIdsI, PermissionsI> = {
 	'question:all': {
 		id: 'question:all',
-		name: 'All Question',
-		description: 'All the question management permissions',
+		name: 'Toutes les questions',
+		description: 'Toutes les permissions de gestion des questions',
 		requires: ['question:view', 'question:edit', /* 'question:create', 'question:delete', */ 'session:view'],
 	},
 	'question:view': {
 		id: 'question:view',
-		name: 'View Question',
-		description: 'View Questions and their details',
+		name: 'Voir la question',
+		description: 'Voir les questions et leurs détails',
 		requires: ['session:view'],
 	},
 	'question:edit': {
 		id: 'question:edit',
-		name: 'Edit Question',
-		description: 'Edit Question general information',
+		name: 'Modifier la question',
+		description: 'Modifier les informations générales de la question',
 		requires: ['session:view', 'question:view'],
 	},
 
 	/* 'question:create': {
 		id: 'question:create',
-		name: 'Create Question',
-		description: 'Create a new Question',
+		name: 'Créer une question',
+		description: 'Créer une nouvelle question',
 		requires: ['session:view', 'question:view'],
 	},
 	'question:delete': {
 		id: 'question:delete',
-		name: 'Delete Question',
-		description: 'Delete a Question',
+		name: 'Supprimer la question',
+		description: 'Supprimer une question',
 		requires: ['session:view', 'question:view'],
 	}, */
 };
 export const QuestionPermissionsList = Object.keys(QuestionPermissions) as QuestionPermissionsIdsI[];
 export const QuestionPermissionsListing: PermissionsListingI = {
-	title: 'Question Permissions',
-	description: 'Permissions related to Questions',
+	title: 'Permissions des questions',
+	description: 'Permissions liées aux questions',
 	permissions: QuestionPermissionsList,
 };

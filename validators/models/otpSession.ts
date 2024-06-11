@@ -1,5 +1,5 @@
-import { MyZodType, z } from '../defaultZod';
-import { emailSchema, mongoIDSchema, otpSchema, passwordSchema } from '../elements';
+import { MyZodType, z } from '^common/defaultZod';
+import { emailSchema, mongoIDSchema, otpSchema, passwordSchema } from '^common/elements';
 
 import { NecessaryUserSchema } from './user';
 
@@ -10,33 +10,33 @@ export const OTPSessionSchema = ({ email }: Partial<Record<keyof OTPSessionI, Er
 				email: emailSchema(email),
 			},
 			{
-				description: 'A Recovery Session Schema',
-				invalid_type_error: 'Recovery Session must be an object',
-				required_error: 'Recovery Session is required',
+				description: 'Un schéma de session de récupération',
+				invalid_type_error: 'La session de récupération doit être un objet',
+				required_error: 'La session de récupération est requise',
 			}
 		)
-		.openapi('Recovery_Session', { description: 'A Recovery Session Schema' });
+		.openapi('Recovery_Session', { description: 'Un schéma de session de récupération' });
 
 export const OTPSessionSendSchema = () =>
 	z
 		.object<MyZodType<OTPSessionSendI>>(
 			{
 				otpCode: otpSchema({
-					description: 'The OTP code',
-					required: 'The OTP code is required',
+					description: 'Le code OTP',
+					required: 'Le code OTP est requis',
 				}),
 				sessionId: mongoIDSchema({
-					description: 'The session id',
-					required: 'The session id is required',
+					description: "L'identifiant de session",
+					required: "L'identifiant de session est requis",
 				}),
 			},
 			{
-				description: 'A Send Recovery Session request Schema',
-				invalid_type_error: 'Send Recovery Session request must be an object',
-				required_error: 'Send Recovery Session request is required',
+				description: "Un schéma de demande d'envoi de session de récupération",
+				invalid_type_error: "La demande d'envoi de session de récupération doit être un objet",
+				required_error: "La demande d'envoi de session de récupération est requise",
 			}
 		)
-		.openapi('Recovery_Session_Send', { description: 'A Send Recovery Session request Schema' });
+		.openapi('Recovery_Session_Send', { description: "Un schéma de demande d'envoi de session de récupération" });
 
 export const ResetPasswordSchema = ({
 	confirmPassword,
@@ -47,32 +47,32 @@ export const ResetPasswordSchema = ({
 	return z
 		.object<MyZodType<ResetPasswordI>>({
 			sessionId: mongoIDSchema({
-				description: 'The session id',
-				required: 'The session id is required',
+				description: "L'identifiant de session",
+				required: "L'identifiant de session est requis",
 				...(sessionId || null),
 			}),
 			password: passwordSchema({
-				description: 'The password',
-				required: 'The password is required',
+				description: 'Le mot de passe',
+				required: 'Le mot de passe est requis',
 				...(password || null),
 			}),
 			confirmPassword: passwordSchema({
-				description: 'The confirm password',
-				required: 'The confirm password is required',
+				description: 'La confirmation du mot de passe',
+				required: 'La confirmation du mot de passe est requise',
 				...(confirmPassword || null),
 			}),
 			otpCode: otpSchema({
-				description: 'The OTP code',
-				required: 'The OTP code is required',
+				description: 'Le code OTP',
+				required: 'Le code OTP est requis',
 				...(otpCode || null),
 			}),
 		})
-		.openapi('Reset_Password', { description: 'A Reset Password request Schema' })
+		.openapi('Reset_Password', { description: 'Un schéma de demande de réinitialisation de mot de passe' })
 		.superRefine((data, ctx) => {
 			if (data.password !== data.confirmPassword) {
 				return ctx.addIssue({
 					code: 'custom',
-					message: 'The password and confirm password must match',
+					message: 'Le mot de passe et la confirmation du mot de passe doivent correspondre',
 					path: ['confirmPassword'],
 				});
 			}
@@ -84,15 +84,15 @@ export const OTPSessionResponseSchema = () =>
 		.object<MyZodType<OTPSessionResponseI>>(
 			{
 				sessionId: mongoIDSchema({
-					description: 'The session id',
-					required: 'The session id is required',
+					description: "L'identifiant de session",
+					required: "L'identifiant de session est requis",
 				}),
 				user: NecessaryUserSchema(),
 			},
 			{
-				description: 'A Recovery Session Response Schema',
-				invalid_type_error: 'Recovery Session Response must be an object',
-				required_error: 'Recovery Session Response is required',
+				description: 'Un schéma de réponse de session de récupération',
+				invalid_type_error: 'La réponse de session de récupération doit être un objet',
+				required_error: 'La réponse de session de récupération est requise',
 			}
 		)
-		.openapi('Recovery_Session_Response', { description: 'A Recovery Session Response Schema' });
+		.openapi('Recovery_Session_Response', { description: 'Un schéma de réponse de session de récupération' });

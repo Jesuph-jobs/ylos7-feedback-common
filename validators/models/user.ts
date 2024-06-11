@@ -1,4 +1,4 @@
-import { MyZodType, z } from '../defaultZod';
+import { MyZodType, z } from '^common/defaultZod';
 import {
 	arraySchema,
 	booleanSchema,
@@ -9,11 +9,11 @@ import {
 	passwordSchema,
 	stringDateSchema,
 	urlSchema,
-} from '../elements';
+} from '^common/elements';
 
 import { permissionSchema } from './permission';
 
-/* --------------------------------- User Login Schema --------------------------------- */
+/* --------------------------------- Schéma de connexion utilisateur --------------------------------- */
 export const userLoginSchema = ({
 	email,
 	password,
@@ -27,13 +27,13 @@ export const userLoginSchema = ({
 				stay: booleanSchema(stay).optional(),
 			},
 			{
-				description: 'User Login Schema',
-				invalid_type_error: 'Invalid User Login Schema',
-				required_error: 'User Login Schema is required',
+				description: 'Schéma de connexion utilisateur',
+				invalid_type_error: 'Schéma de connexion utilisateur invalide',
+				required_error: 'Le schéma de connexion utilisateur est requis',
 			}
 		)
-		.openapi('User_Login_Request', { description: 'User Login Schema' });
-/* --------------------------------- User Register Schema --------------------------------- */
+		.openapi('Demande_de_connexion_utilisateur', { description: 'Schéma de connexion utilisateur' });
+/* --------------------------------- Schéma d'inscription utilisateur --------------------------------- */
 export const userRegisterSchema = ({
 	email,
 	firstName,
@@ -43,23 +43,23 @@ export const userRegisterSchema = ({
 		.object<MyZodType<UserRegistrationI>>(
 			{
 				email: emailSchema(email),
-				firstName: nameSchema(firstName, 'firstName'),
-				lastName: nameSchema(lastName, 'lastName'),
+				firstName: nameSchema(firstName, 'prénom'),
+				lastName: nameSchema(lastName, 'nom de famille'),
 			},
 			{
-				description: 'User Registration Schema',
-				invalid_type_error: 'Invalid User Registration Schema',
-				required_error: 'User Registration Schema is required',
+				description: "Schéma d'inscription utilisateur",
+				invalid_type_error: "Schéma d'inscription utilisateur invalide",
+				required_error: "Le schéma d'inscription utilisateur est requis",
 			}
 		)
-		.openapi('User_Registration_Request', { description: 'User Registration Schema' });
+		.openapi("Demande_d'inscription_utilisateur", { description: "Schéma d'inscription utilisateur" });
 
 	return schema;
 };
 
-/* --------------------------------- User Forgot Password Schema --------------------------------- */
+/* --------------------------------- Schéma de mot de passe oublié utilisateur --------------------------------- */
 
-/* --------------------------------- User Document Schema --------------------------------- */
+/* --------------------------------- Schéma de document utilisateur --------------------------------- */
 
 export const UserDocumentSchema = (
 	{
@@ -78,21 +78,21 @@ export const UserDocumentSchema = (
 			{
 				email: emailSchema(email),
 				password: passwordSchema(password),
-				firstName: nameSchema(firstName, 'First name'),
-				lastName: nameSchema(lastName, 'Last name'),
+				firstName: nameSchema(firstName, 'prénom'),
+				lastName: nameSchema(lastName, 'nom de famille'),
 				enabled: booleanSchema(enabled),
 				lastLogin: dateSchema(lastLogin).optional(),
 				permissions: arraySchema<PermissionsIdEnum>(permissionSchema(permissions)),
 			},
 			{
-				description: DocumentUserMsg.description || 'User document Schema',
-				invalid_type_error: DocumentUserMsg.invalid || 'Invalid User Schema',
-				required_error: DocumentUserMsg.required || 'User document Schema is required',
+				description: DocumentUserMsg.description || 'Schéma de document utilisateur',
+				invalid_type_error: DocumentUserMsg.invalid || 'Schéma utilisateur invalide',
+				required_error: DocumentUserMsg.required || 'Le schéma de document utilisateur est requis',
 			}
 		)
-		.openapi('User_Document', { description: 'User document Schema' });
+		.openapi('Document_utilisateur', { description: 'Schéma de document utilisateur' });
 };
-/* --------------------------------- User Schema --------------------------------- */
+/* --------------------------------- Schéma utilisateur --------------------------------- */
 
 export const PublicUserSchema = (
 	{
@@ -120,12 +120,12 @@ export const PublicUserSchema = (
 				profilePicture: urlSchema(profilePicture).optional(),
 			},
 			{
-				description: PublicUserMsg.description || 'Public User Schema',
-				invalid_type_error: PublicUserMsg.invalid || 'Invalid User Schema',
-				required_error: PublicUserMsg.required || 'User Schema is required',
+				description: PublicUserMsg.description || 'Schéma utilisateur public',
+				invalid_type_error: PublicUserMsg.invalid || 'Schéma utilisateur invalide',
+				required_error: PublicUserMsg.required || 'Le schéma utilisateur est requis',
 			}
 		)
-		.openapi('Public_User', { description: 'Public User Schema' });
+		.openapi('Utilisateur_public', { description: 'Schéma utilisateur public' });
 
 export const AuthUserSchema = (
 	userMsgs: Partial<Record<keyof UserI, ErrorsSchemaMsgI>> = {},
@@ -137,24 +137,26 @@ export const AuthUserSchema = (
 				user: PublicUserSchema(userMsgs, PublicUserMsg),
 				token: z
 					.string({
-						description: 'User token',
-						invalid_type_error: 'Invalid token',
-						required_error: 'Token is required',
+						description: 'Jeton utilisateur',
+						invalid_type_error: 'Jeton invalide',
+						required_error: 'Le jeton est requis',
 					})
 					.optional(),
 				new: booleanSchema({
-					description: 'If the user is new',
-					invalid: 'Invalid new',
-					required: 'New is required',
+					description: "Si l'utilisateur est nouveau",
+					invalid: 'Nouveau invalide',
+					required: 'Nouveau est requis',
 				}).optional(),
 			},
 			{
-				description: 'User Auth Response Schema',
-				invalid_type_error: 'Invalid User Auth Response Schema',
-				required_error: 'User Auth Response Schema is required',
+				description: "Schéma de réponse d'authentification utilisateur",
+				invalid_type_error: "Schéma de réponse d'authentification utilisateur invalide",
+				required_error: "Le schéma de réponse d'authentification utilisateur est requis",
 			}
 		)
-		.openapi('User_Auth_Response', { description: 'User Auth Response Schema' });
+		.openapi("Réponse_d'authentification_utilisateur", {
+			description: "Schéma de réponse d'authentification utilisateur",
+		});
 
 export const NecessaryUserSchema = (
 	{ email, firstName, lastName }: Partial<Record<keyof NecessaryUserI, ErrorsSchemaMsgI>> = {},
@@ -168,12 +170,12 @@ export const NecessaryUserSchema = (
 				email: emailSchema(email),
 			},
 			{
-				description: NecessaryUserMsg.description || 'Necessary User Schema',
-				invalid_type_error: NecessaryUserMsg.invalid || 'Invalid Necessary User Schema',
-				required_error: NecessaryUserMsg.required || 'Necessary User Schema is required',
+				description: NecessaryUserMsg.description || 'Schéma utilisateur nécessaire',
+				invalid_type_error: NecessaryUserMsg.invalid || 'Schéma utilisateur nécessaire invalide',
+				required_error: NecessaryUserMsg.required || 'Le schéma utilisateur nécessaire est requis',
 			}
 		)
-		.openapi('Necessary_User', { description: 'Necessary User Schema' });
+		.openapi('Utilisateur_nécessaire', { description: 'Schéma utilisateur nécessaire' });
 
 export const BasicUserSchema = (
 	{ email, firstName, lastName, createdAt, updatedAt }: Partial<Record<keyof BasicUserI, ErrorsSchemaMsgI>> = {},
@@ -189,9 +191,9 @@ export const BasicUserSchema = (
 				updatedAt: stringDateSchema(updatedAt),
 			},
 			{
-				description: BasicUserMsg.description || 'Basic User Schema',
-				invalid_type_error: BasicUserMsg.invalid || 'Invalid Basic User Schema',
-				required_error: BasicUserMsg.required || 'Basic User Schema is required',
+				description: BasicUserMsg.description || 'Schéma utilisateur de base',
+				invalid_type_error: BasicUserMsg.invalid || 'Schéma utilisateur de base invalide',
+				required_error: BasicUserMsg.required || 'Le schéma utilisateur de base est requis',
 			}
 		)
-		.openapi('Basic_User', { description: 'Basic User Schema' });
+		.openapi('Utilisateur_de_base', { description: 'Schéma utilisateur de base' });

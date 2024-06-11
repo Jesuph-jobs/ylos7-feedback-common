@@ -19,7 +19,8 @@ export const permissionsMap: Record<PermissionsIdEnum, PermissionsI> = {
 	'super:admin': {
 		id: 'super:admin',
 		name: 'Super Admin',
-		description: 'All the permissions, including managing admins and their permissions(includes: delete admin)',
+		description:
+			'Toutes les permissions, y compris la gestion des administrateurs et de leurs permissions (inclut : supprimer un administrateur)',
 		requires: [],
 	},
 	...generalPermissionsMap,
@@ -39,11 +40,11 @@ export const permissionsListings: PermissionsListingI[] = [
 export const permissionSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
 		.enum<PermissionsIdEnum, MyEnum<PermissionsIdEnum>>(permissions, {
-			invalid_type_error: msg?.invalid || 'Invalid permission',
-			required_error: msg?.required || 'Permission is required',
-			description: msg?.description || 'The permission',
+			invalid_type_error: msg?.invalid || 'Permission invalide',
+			required_error: msg?.required || 'La permission est requise',
+			description: msg?.description || 'La permission',
 		})
 		.openapi('Permission', {
-			description: msg?.description || 'The permission',
-			format: 'read | write | delete',
+			description: msg?.description || 'La permission',
+			format: 'lecture | écriture | suppression',
 		});

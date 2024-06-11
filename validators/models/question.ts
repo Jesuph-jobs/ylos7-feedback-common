@@ -1,6 +1,5 @@
+import { MyZodType, z } from '^common/defaultZod';
 import { mongoIDSchema } from '^common/elements';
-
-import { MyZodType, z } from '../defaultZod';
 
 export const questionInfoSchema = ({ question, title }: Partial<Record<keyof QuestionInfoI, ErrorsSchemaMsgI>> = {}) =>
 	z
@@ -9,7 +8,7 @@ export const questionInfoSchema = ({ question, title }: Partial<Record<keyof Que
 			title: z.string(title),
 			type: z.enum(['importance', 'quality', 'frequency']),
 		})
-		.openapi('Basic Question', { description: 'Basic question' });
+		.openapi('Question de base', { description: 'Question de base' });
 
 export const basicQuestionsSchema = ({
 	question,
@@ -21,7 +20,7 @@ export const basicQuestionsSchema = ({
 			...questionInfoSchema({ question, title }).shape,
 			sessionId: mongoIDSchema(sessionId),
 		})
-		.openapi('Basic Question', { description: 'Basic question' });
+		.openapi('Question de base', { description: 'Question de base' });
 
 export const questionsSchema = ({ id, question, title }: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> = {}) =>
 	z
@@ -29,4 +28,4 @@ export const questionsSchema = ({ id, question, title }: Partial<Record<keyof Qu
 			id: mongoIDSchema(id),
 			...questionInfoSchema({ question, title }).shape,
 		})
-		.openapi('Question', { description: 'The question' });
+		.openapi('Question', { description: 'La question' });

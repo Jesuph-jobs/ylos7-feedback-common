@@ -1,5 +1,5 @@
-import { MyZodType, z } from '../defaultZod';
-import { mongoIDSchema } from '../elements';
+import { MyZodType, z } from '^common/defaultZod';
+import { mongoIDSchema } from '^common/elements';
 
 export const YLOS7_SERVER_JWT_PayloadSchema = ({
 	id,

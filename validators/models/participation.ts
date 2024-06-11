@@ -1,5 +1,6 @@
-import { MyZodType, z } from '../defaultZod';
-import { booleanSchema, mongoIDSchema, otpSchema, stringDateSchema, uuidSchema } from '../elements';
+import { MyZodType, z } from '^common/defaultZod';
+import { booleanSchema, mongoIDSchema, otpSchema, stringDateSchema, uuidSchema } from '^common/elements';
+
 export const participationStatuses: ParticipationKindI = {
 	form: 'f',
 	result: 'r',
@@ -8,12 +9,12 @@ export const participationStatusesArray = Object.values(participationStatuses) a
 export const participationStatusSchema = (msg?: ErrorsSchemaMsgI) =>
 	z
 		.enum<ParticipationKinds, MyEnum<ParticipationKinds>>(participationStatusesArray, {
-			invalid_type_error: msg?.invalid || 'Invalid participation status',
-			required_error: msg?.required || 'Participation status is required',
-			description: msg?.description || 'The participation status',
+			invalid_type_error: msg?.invalid || 'Statut de participation invalide',
+			required_error: msg?.required || 'Le statut de participation est requis',
+			description: msg?.description || 'Le statut de participation',
 		})
 		.openapi('ParticipationKinds', {
-			description: msg?.description || 'The participation status',
+			description: msg?.description || 'Le statut de participation',
 			format: 'form | result',
 		});
 
@@ -38,11 +39,10 @@ export const basicParticipationSchema = ({
 			uuid: uuidSchema(uuid),
 			done: booleanSchema(done),
 		})
-		.openapi('BasicParticipation', { description: 'The basic participation' });
+		.openapi('BasicParticipation', { description: 'La participation de base' });
 
 export const participationSchema = ({
 	id,
-
 	createdAt,
 	updatedAt,
 	...rest
@@ -58,4 +58,4 @@ export const participationSchema = ({
 			createdAt: stringDateSchema(createdAt),
 			updatedAt: stringDateSchema(updatedAt),
 		})
-		.openapi('Participation', { description: 'The participation' });
+		.openapi('Participation', { description: 'La participation' });
