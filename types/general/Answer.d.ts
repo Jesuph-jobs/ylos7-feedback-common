@@ -29,12 +29,12 @@ declare interface AnswersMutualResI<V = number> extends AnswersMutualResolvedI<V
 
 declare interface GlobalAnswersI {
 	id: string;
-	student: PublicStudentI;
+	rater: PublicStudentI;
 	questions: QuestionsValuesI<AnswersSumI>;
 }
 declare interface ParticipantAnswersI<T extends AnswersMutualI = AnswersMutualI> {
 	id: string;
-	student: PublicStudentI;
+	rater: PublicStudentI;
 	questions: QuestionsValuesI<T>;
 }
 
