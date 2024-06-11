@@ -37,6 +37,11 @@ declare interface ParticipantAnswersI<T extends AnswersMutualI = AnswersMutualI>
 	student: PublicStudentI;
 	questions: QuestionsValuesI<T>;
 }
+declare interface ParticipantResultI {
+	id: string;
+	rater: PublicStudentI;
+	answers: ParticipantAnswersI[];
+}
 
 declare interface GlobalAnswersCollectionI {
 	average: QuestionsValuesI<AnswersSumI>;
