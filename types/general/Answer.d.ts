@@ -34,7 +34,7 @@ declare interface GlobalAnswersI {
 }
 declare interface ParticipantAnswersI<T extends AnswersMutualI = AnswersMutualI> {
 	id: string;
-	rater: PublicStudentI;
+	student: PublicStudentI;
 	questions: QuestionsValuesI<T>;
 }
 
