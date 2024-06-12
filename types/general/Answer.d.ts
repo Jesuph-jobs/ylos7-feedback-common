@@ -27,9 +27,9 @@ declare interface AnswersMutualResI<V = number> extends AnswersMutualResolvedI<V
 	minimum: V;
 }
 
-declare interface GlobalAnswersI<T extends AnswersSumI = AnswersSumI> {
+declare interface GlobalAnswersI<T = AnswersSumI> {
 	id: string;
-	rater: PublicStudentI;
+	student: PublicStudentI;
 	questions: QuestionsValuesI<T>;
 }
 declare interface ParticipantAnswersI<T extends AnswersMutualI = AnswersMutualI, U = QuestionsValuesI<T>> {
