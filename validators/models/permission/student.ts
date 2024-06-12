@@ -1,39 +1,39 @@
 export const StudentPermissions: Record<StudentPermissionsIdsI, PermissionsI> = {
 	'student:all': {
 		id: 'student:all',
-		name: 'Tous les étudiants',
-		description: 'Toutes les permissions de gestion des étudiants',
+		name: 'Tous les participants',
+		description: 'Toutes les permissions de gestion des participants',
 		requires: ['student:view', 'student:edit', 'student:create'],
 	},
 	'student:view': {
 		id: 'student:view',
-		name: 'Voir les étudiants',
-		description: 'Voir les étudiants et leurs détails',
+		name: 'Voir les participants',
+		description: 'Voir les participants et leurs détails',
 		requires: [],
 	},
 	'student:edit': {
 		id: 'student:edit',
-		name: 'Modifier les étudiants',
-		description: 'Modifier les informations générales des étudiants',
+		name: 'Modifier les participants',
+		description: 'Modifier les informations générales des participants',
 		requires: ['student:view'],
 	},
 
 	'student:create': {
 		id: 'student:create',
-		name: 'Créer un étudiant',
-		description: 'Créer un nouvel étudiant',
+		name: 'Créer un participant',
+		description: 'Créer un nouvel participant',
 		requires: ['student:view'],
 	},
 	'student:delete': {
 		id: 'student:delete',
-		name: 'Supprimer un étudiant',
-		description: 'Supprimer un étudiant',
+		name: 'Supprimer un participant',
+		description: 'Supprimer un participant',
 		requires: ['student:view'],
 	},
 };
 export const StudentPermissionsList = Object.keys(StudentPermissions) as StudentPermissionsIdsI[];
 export const StudentPermissionsListing: PermissionsListingI = {
-	title: 'Permissions des étudiants',
-	description: 'Permissions liées aux étudiants',
+	title: 'Permissions des participants',
+	description: 'Permissions liées aux participants',
 	permissions: StudentPermissionsList,
 };

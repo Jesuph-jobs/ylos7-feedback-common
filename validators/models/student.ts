@@ -17,7 +17,7 @@ export const basicStudentsSchema = ({
 			tag: z.string().optional(),
 			profilePicture: urlSchema(profilePicture).optional(),
 		})
-		.openapi('Étudiant de base', { description: 'Étudiant de base' });
+		.openapi('participant de base', { description: 'participant de base' });
 export const basicStudentsFrenchSchema = ({
 	email,
 	firstName,
@@ -34,7 +34,7 @@ export const basicStudentsFrenchSchema = ({
 			tag: z.string().optional(),
 			'Photo de profil': urlSchema(profilePicture).optional(),
 		})
-		.openapi('Étudiant de base', { description: 'Étudiant de base' });
+		.openapi('participant de base', { description: 'participant de base' });
 
 export const studentsSchema = ({
 	id,
@@ -59,4 +59,4 @@ export const studentsSchema = ({
 			updatedAt: stringDateSchema(updatedAt),
 			selected: z.boolean().optional(),
 		})
-		.openapi('Étudiant', { description: "L'étudiant" });
+		.openapi('participant', { description: 'le participant' });
