@@ -12,3 +12,15 @@ export function SchemaValidator<T>(schema: ZodTypeAny) {
 		}
 	};
 }
+export function SchemaValidatorZodError<T>(schema: ZodTypeAny) {
+	return (values: T) => {
+		try {
+			schema.parse(values) as T;
+		} catch (error) {
+			if (error instanceof ZodError) {
+				return error;
+				// eslint-disable-next-line no-console
+			} else console.error(error);
+		}
+	};
+}

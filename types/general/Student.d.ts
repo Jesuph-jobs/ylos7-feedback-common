@@ -16,3 +16,11 @@ declare interface StudentI<ID = string, TimeT extends string | Date = string> ex
 	id: ID;
 	selected?: boolean;
 }
+declare interface BasicStudentFrenchI {
+	'prénom *': string;
+	'nom de famille *': string;
+	'adresse e-mail*': string;
+	'numéro de téléphone'?: string;
+	tag?: string;
+	'Photo de profil'?: string;
+}

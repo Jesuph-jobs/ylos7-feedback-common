@@ -18,6 +18,23 @@ export const basicStudentsSchema = ({
 			profilePicture: urlSchema(profilePicture).optional(),
 		})
 		.openapi('Étudiant de base', { description: 'Étudiant de base' });
+export const basicStudentsFrenchSchema = ({
+	email,
+	firstName,
+	lastName,
+	phone,
+	profilePicture,
+}: Partial<Record<keyof BasicStudentI, ErrorsSchemaMsgI>> = {}) =>
+	z
+		.object<MyZodType<BasicStudentFrenchI>>({
+			'adresse e-mail*': emailSchema(email),
+			'prénom *': nameSchema(firstName, 'Prénom'),
+			'nom de famille *': nameSchema(lastName, 'Nom de famille'),
+			'numéro de téléphone': phoneSchema(phone),
+			tag: z.string().optional(),
+			'Photo de profil': urlSchema(profilePicture).optional(),
+		})
+		.openapi('Étudiant de base', { description: 'Étudiant de base' });
 
 export const studentsSchema = ({
 	id,
