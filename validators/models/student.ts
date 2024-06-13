@@ -15,6 +15,7 @@ export const basicStudentsSchema = ({
 			lastName: nameSchema(lastName, 'Nom de famille'),
 			phone: phoneSchema(phone),
 			tag: z.string().optional(),
+			enabled: z.boolean().optional(),
 			profilePicture: urlSchema(profilePicture).optional(),
 		})
 		.openapi('participant de base', { description: 'participant de base' });
@@ -57,6 +58,7 @@ export const studentsSchema = ({
 			profilePicture: urlSchema(profilePicture).optional(),
 			createdAt: stringDateSchema(createdAt),
 			updatedAt: stringDateSchema(updatedAt),
+			enabled: z.boolean().optional(),
 			selected: z.boolean().optional(),
 		})
 		.openapi('participant', { description: 'le participant' });
