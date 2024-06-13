@@ -12,7 +12,7 @@ declare interface YLOS7_SERVER_JWT_Payload {
 	issBy: string;
 	pk: string;
 }
-type YLOS7AppsI = string;
-declare interface YLOS7_SERVER_OAUTH_JWT_Payload extends YLOS7_SERVER_JWT_Payload {
-	issFor: YLOS7AppsI;
+declare interface YLOS7_SERVER_JWT_Session_Payload extends YLOS7_SERVER_JWT_Payload {
+	code: string;
 }
+type YLOS7AppsI = string;

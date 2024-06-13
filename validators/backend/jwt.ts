@@ -31,16 +31,16 @@ export const YLOS7_SERVER_JWT_PayloadSchema = ({
 			description: issBy?.description || 'The issuer of the token',
 		}),
 	});
-export const YLOS7_SERVER_OAUTH_JWT_PayloadSchema = ({
-	issFor,
+export const YLOS7_SERVER_JWT_Session_PayloadSchema = ({
+	code,
 	...rest
-}: Partial<Record<keyof YLOS7_SERVER_OAUTH_JWT_Payload, ErrorsSchemaMsgI>> = {}) =>
+}: Partial<Record<keyof YLOS7_SERVER_JWT_Session_Payload, ErrorsSchemaMsgI>> = {}) =>
 	YLOS7_SERVER_JWT_PayloadSchema({
 		...rest,
 	}).extend({
-		issFor: z.string({
-			required_error: issFor?.required || 'issFor is required',
-			invalid_type_error: issFor?.invalid || 'issFor must be a string',
-			description: issFor?.description || 'The app for which the token is issued',
+		code: z.string({
+			required_error: code?.required || 'code is required',
+			invalid_type_error: code?.invalid || 'code must be a string',
+			description: code?.description || 'The code of the session',
 		}),
 	});
