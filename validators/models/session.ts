@@ -96,6 +96,7 @@ export const sessionSchema = ({
 				startDate,
 				status,
 			}).shape,
+			participants: z.number(participants),
 			id: mongoIDSchema(id),
 			createdAt: stringDateSchema(createdAt),
 			updatedAt: stringDateSchema(updatedAt),
