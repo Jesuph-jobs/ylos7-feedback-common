@@ -3,7 +3,7 @@ export const StudentPermissions: Record<StudentPermissionsIdsI, PermissionsI> = 
 		id: 'student:all',
 		name: 'Tous les participants',
 		description: 'Toutes les permissions de gestion des participants',
-		requires: ['student:view', 'student:edit', 'student:create'],
+		requires: ['student:view', 'student:edit', 'student:create', 'student:delete'],
 	},
 	'student:view': {
 		id: 'student:view',
