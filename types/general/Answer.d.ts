@@ -33,10 +33,13 @@ declare interface GlobalAnswersI<T = AnswersSumI> {
 	votes: number;
 	questions: QuestionsValuesI<T>;
 }
-declare interface ParticipantAnswersI<T extends AnswersMutualI = AnswersMutualI, U = QuestionsValuesI<T>> {
+declare interface BasicParticipantAnswersI<T extends AnswersMutualI = AnswersMutualI, U = QuestionsValuesI<T>> {
 	id: string;
-	student: PublicStudentI;
 	questions: U;
+}
+declare interface ParticipantAnswersI<T extends AnswersMutualI = AnswersMutualI, U = QuestionsValuesI<T>>
+	extends BasicParticipantAnswersI<T, U> {
+	student: PublicStudentI;
 }
 declare interface ParticipantResultI<T extends AnswersMutualI = AnswersMutualI, U = QuestionsValuesI<T>> {
 	id: string;
@@ -51,3 +54,10 @@ declare interface GlobalAnswersCollectionI {
 }
 declare type ParticipantAnswersCollectionI = QuestionsValuesI<AnswersMutualResI>;
 declare type ParticipantAnswersCollectionReverseI = AnswersMutualResI<QuestionsValuesI>;
+
+declare interface PreParticipationResultI {
+	id: string;
+	rater: PublicStudentI;
+	givenAnswers: ParticipantAnswersI<number>[];
+	effectedAnswers: BasicParticipantAnswersI<number>[];
+}
