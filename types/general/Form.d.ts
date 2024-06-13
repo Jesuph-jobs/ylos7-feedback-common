@@ -12,6 +12,7 @@ declare interface BasicParticipationI<ID = string> extends ParticipationsActors<
 	code: string;
 	uuid: string;
 	done: boolean;
+	wantsReceive: boolean;
 }
 declare interface ParticipationI<ID = string, TimeT extends string | Date = string>
 	extends BasicParticipationI<ID>,

@@ -25,6 +25,7 @@ export const basicParticipationSchema = ({
 	raterId,
 	uuid,
 	done,
+	wantsReceive,
 }: Partial<
 	Record<keyof BasicParticipationI, ErrorsSchemaMsgI> & {
 		questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>>;
@@ -36,6 +37,7 @@ export const basicParticipationSchema = ({
 			sessionId: mongoIDSchema(sessionId),
 			code: otpSchema(code),
 			kind: participationStatusSchema(kind),
+			wantsReceive: booleanSchema(wantsReceive),
 			uuid: uuidSchema(uuid),
 			done: booleanSchema(done),
 		})

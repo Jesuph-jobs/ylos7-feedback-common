@@ -18,6 +18,7 @@ declare interface loginParticipationShapeI {
 declare interface submitAnswersShapeI {
 	body: {
 		answers: AnswerInfoI[];
+		wantsReceive: boolean;
 	};
 	query: any;
 	params: any;

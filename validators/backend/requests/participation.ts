@@ -30,6 +30,7 @@ export const loginParticipationShapeSchema = z.object<MyZodType<loginParticipati
 export const submitAnswersShapeSchema = z.object<MyZodType<submitAnswersShapeI>>({
 	body: z.object({
 		answers: arraySchema(answerInfoSchema()),
+		wantsReceive: z.boolean(),
 	}),
 	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
 		message: 'Query doit être vide',

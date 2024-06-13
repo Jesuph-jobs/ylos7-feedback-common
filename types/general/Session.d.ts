@@ -26,11 +26,12 @@ declare interface SessionI<SessionID = string, TimeT extends string | Date = str
 	participants: number;
 	id: SessionID;
 }
-declare interface BasicSessionNoParticipantInfoI {
+declare interface BasicSessionNoParticipantInfoI<DONE extends boolean = boolean> {
 	session: SessionInfoI;
 	rater: PublicStudentI;
+	done: DONE;
 }
-declare interface SessionDetailI extends BasicSessionNoParticipantInfoI {
+declare interface SessionDetailI<DONE extends boolean = boolean> extends BasicSessionNoParticipantInfoI<DONE> {
 	questions: QuestionI[];
 	participants: PublicStudentI[];
 }
