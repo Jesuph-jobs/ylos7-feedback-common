@@ -36,11 +36,7 @@ export const basicSessionWithoutParticipantsSchema = ({
 	note,
 	startDate,
 	title,
-}: Partial<
-	Record<keyof BasicSessionNoParticipantI, ErrorsSchemaMsgI> & {
-		questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>>;
-	}
-> = {}) =>
+}: Partial<Record<keyof BasicSessionNoParticipantI, ErrorsSchemaMsgI>> = {}) =>
 	z
 		.object<MyZodType<BasicSessionNoParticipantI<string | Date>>>({
 			name: nameSchema(name),
@@ -56,9 +52,7 @@ export const basicSessionSchema = ({
 	participants,
 	status,
 	...others
-}: Partial<
-	Record<keyof BasicSessionI, ErrorsSchemaMsgI> & { questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>> }
-> = {}) =>
+}: Partial<Record<keyof BasicSessionI, ErrorsSchemaMsgI>> = {}) =>
 	z
 		.object<MyZodType<BasicSessionI<string, string | Date>>>({
 			...basicSessionWithoutParticipantsSchema(others || {}).shape,
@@ -74,28 +68,23 @@ export const sessionSchema = ({
 	name,
 	note,
 	participants,
-	questions,
 	startDate,
 	status,
 	createdAt,
+	title,
 	updatedAt,
-}: Partial<
-	Record<keyof SessionI, ErrorsSchemaMsgI> & {
-		questions: Partial<Record<keyof QuestionI, ErrorsSchemaMsgI>>;
-	}
-> = {}) =>
+}: Partial<Record<keyof SessionI, ErrorsSchemaMsgI>> = {}) =>
 	z
 		.object<MyZodType<SessionI<string, string | Date>>>({
-			...basicSessionSchema({
+			...basicSessionWithoutParticipantsSchema({
 				description,
 				endDate,
 				name,
 				note,
-				participants,
-				questions,
 				startDate,
-				status,
+				title,
 			}).shape,
+			status: sessionStatusSchema(status),
 			participants: z.number(participants),
 			id: mongoIDSchema(id),
 			createdAt: stringDateSchema(createdAt),
