@@ -9,6 +9,7 @@ declare interface SelectedStudentI extends PublicStudentI {
 	selected: boolean;
 }
 declare interface BasicStudentI extends Omit<PublicStudentI, 'id'> {
+	enabled?: boolean;
 	email: string;
 	phone?: string;
 }
