@@ -1,8 +1,13 @@
+import { StatusCodes } from 'http-status-codes';
 import { ZodTypeAny } from 'zod';
 
 import { z } from './defaultZod';
 
-export const ServiceResponseSchema = <T extends ZodTypeAny>(dataSchema: T, example: z.infer<T> = {}) =>
+export const ServiceResponseSchema = <T extends ZodTypeAny>(
+	dataSchema: T,
+	example: z.infer<T> = {},
+	statusCode: StatusCodes = StatusCodes.OK
+) =>
 	z
 		.object({
 			success: z.boolean(),
@@ -18,6 +23,6 @@ export const ServiceResponseSchema = <T extends ZodTypeAny>(dataSchema: T, examp
 				success: true,
 				message: 'Success',
 				data: example,
-				statusCode: 200,
+				statusCode: statusCode,
 			},
 		});

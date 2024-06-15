@@ -213,3 +213,16 @@ export const ratingSchema = (msg?: ErrorsSchemaMsgI) =>
 			description: msg?.description || 'Une note',
 			format: 'numeric',
 		});
+
+export const messageSchema = (msg?: ErrorsSchemaMsgI) =>
+	z
+		.string({
+			required_error: msg?.required || 'Message requis',
+			invalid_type_error: msg?.invalid || 'Message invalide',
+			description: msg?.description || 'Un message',
+		})
+		.openapi('Message', {
+			description: msg?.description || 'Un message',
+			example: 'Message',
+			format: 'message',
+		});
