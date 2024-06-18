@@ -7,6 +7,7 @@ declare type SessionResultManagementPermissionsIdsI =
 declare type SessionParticipantsManagementPermissionsIdsI =
 	| 'session:participants:all'
 	| 'session:participants:view'
+	| 'session:participants:reset'
 	| 'session:participants:add'
 	| 'session:participants:remove';
 

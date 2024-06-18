@@ -45,7 +45,17 @@ export const UpdateSessionAddParticipantShapeSchema = z.object<MyZodType<UpdateS
 		participantId: mongoIDSchema(),
 	}),
 });
-
+export const ResetParticipationSchema = z.object<MyZodType<ResetParticipationShapeI>>({
+	body: z.any().refine((query) => !query || Object.keys(query).length === 0, {
+		message: 'Body doit être vide',
+	}),
+	query: z.any().refine((query) => !query || Object.keys(query).length === 0, {
+		message: 'Query doit être vide',
+	}),
+	params: z.object({
+		participationId: mongoIDSchema(),
+	}),
+});
 export const UpdateSessionRemoveParticipantShapeSchema = UpdateSessionAddParticipantShapeSchema;
 
 export const DeleteSessionShapeSchema = GetSessionShapeSchema;
