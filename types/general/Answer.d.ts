@@ -24,7 +24,7 @@ declare interface AnswersMutualResolvedI<V = number> extends AnswersMutualI<V> {
 }
 declare interface AnswersMutualResI<V = number> extends AnswersMutualResolvedI<V> {
 	maximum: V;
-	minimum: V;
+	//minimum: V;
 }
 
 declare interface GlobalAnswersI<T = AnswersSumI> {
