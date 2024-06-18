@@ -30,6 +30,7 @@ declare interface BasicSessionNoParticipantInfoI<DONE extends boolean = boolean>
 	session: SessionInfoI;
 	rater: PublicStudentI;
 	done: DONE;
+	isLoggedIn: boolean;
 }
 declare interface SessionDetailI<DONE extends boolean = boolean> extends BasicSessionNoParticipantInfoI<DONE> {
 	questions: QuestionI[];

@@ -27,6 +27,13 @@ declare interface UpdateSessionAddParticipantShapeI {
 		participantId: string;
 	};
 }
+declare interface ResetParticipationShapeI {
+	body: any;
+	query: any;
+	params: {
+		participationId: string;
+	};
+}
 
 declare type UpdateSessionRemoveParticipantShapeI = UpdateSessionAddParticipantShapeI;
 

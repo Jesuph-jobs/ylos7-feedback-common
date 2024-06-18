@@ -103,6 +103,12 @@ export const SessionPermissions: Record<SessionPermissionsIdsI, PermissionsI> = 
 		description: "Exporter les résultats d'une session",
 		requires: ['session:view'],
 	},
+	'session:participants:reset': {
+		id: 'session:participants:reset',
+		name: 'Réinitialiser les resultats',
+		description: "Réinitialiser les resultats d'une session pour un participant",
+		requires: ['session:participants:view'],
+	},
 };
 export const SessionPermissionsList = Object.keys(SessionPermissions) as SessionPermissionsIdsI[];
 export const SessionPermissionsListing: PermissionsListingI = {
